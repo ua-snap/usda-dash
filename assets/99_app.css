@@ -9,7 +9,82 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: 'Open Sans';
 }
 
+label.label:not(:last-child) {
+	margin: 1.5em 0 1ex;
+}
+
+.section--form {
+	padding-top: 0;
+	margin-bottom: 0;
+}
+.section.graph {
+	padding-top: 0;
+	margin-top: -3rem;
+}
+
 /* We want vertical Checklists always. */
 .control label.checkbox {
 	display: block;
+}
+
+.header {
+	background-color: rgba(239, 241, 226, 1.00);
+	padding: 0;
+}
+
+.header--section {
+	margin-top: -1rem;
+}
+
+.header--logo {
+	float: left;
+	padding-right: 2rem;
+}
+
+.header--snap-link img {
+	height: 5.4em;
+}
+
+.form label, .form input {
+	font-size: 130%;
+}
+
+label.checkbox input, label.radio input {
+	position: relative;
+	bottom: .1ex;
+	margin-right: .5ex;
+}
+
+tspan.line:nth-child(1) {
+	font-weight: 900;
+	font-size: 18pt;
+}
+
+.date-range-selector .rc-slider {
+	margin: 2rem 1rem;
+}
+
+.rc-slider-handle {
+	width: 25px;
+	height: 25px;
+	margin-left: -15px;
+	margin-top: -11px;
+}
+
+.footer p {
+	width: 50%;
+	margin: 1em auto;
+}
+
+.footer a {
+	display: inline-block;
+}
+
+.footer a img {
+	height: 5em;
+	margin: 1em 1.5em;
+}
+
+._dash-undo-redo {
+	display: none;
 }

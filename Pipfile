@@ -12,9 +12,14 @@ dash-renderer = "*"
 dash-html-components = "*"
 dash-core-components = "*"
 plotly = "*"
-dash_dangerously_set_inner_html = "*"
+dash-dangerously-set-inner-html = "*"
+folium = "*"
+
 
 [dev-packages]
 
+
+
 [requires]
+
 python_version = "3.6"
