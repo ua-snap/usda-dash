@@ -174,14 +174,14 @@ map_layout = go.Layout(
         accesstoken=mapbox_access_token,
         zoom=3,
         center=dict(lat=68, lon=-120),
-        layers=[
-            dict(
-                sourcetype='geojson',
-                source=json.loads(open('./AK.geo.json', 'r').read()),
-                type='fill',
-                color='rgba(255,255,255,.1)'
-            )
-        ]
+        #layers=[
+            #dict(
+                #sourcetype='geojson',
+                #source=json.loads(open('./AK.geo.json', 'r').read()),
+                #type='fill',
+                #color='rgba(255,255,255,.1)'
+            #)
+        #]
     ),
     showlegend=False,
     margin=dict(l=0, r=0, t=0, b=0)
@@ -315,7 +315,7 @@ def temp_chart(community, threshold, gcm):
     community_name = re.sub('[^A-Za-z0-9]+', '', community) + '_' + gcm
     comm_filename = community_name
 
-    df = pd.read_csv('data/' + comm_filename + '.csv')
+    df = pd.read_csv('https://s3-us-west-2.amazonaws.com/community-logs-data/' + comm_filename + '.csv')
     imperial_conversion_lu = {'temp':1.8,'precip':0.0393701}
     df[community_name] = df[community_name] * imperial_conversion_lu['temp'] + 32
     df['time'] = pd.to_datetime(df['time'])
