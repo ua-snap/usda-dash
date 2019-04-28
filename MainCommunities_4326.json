@@ -4,14 +4,11 @@
 "features": [
 { "type": "Feature", "properties": { "LocationName": "Anchorage" }, "geometry": { "type": "Point", "coordinates": [ -149.9002778, 61.2180556 ] } },
 { "type": "Feature", "properties": { "LocationName": "Bethel" }, "geometry": { "type": "Point", "coordinates": [ -161.753496986, 60.788663512 ] } },
-{ "type": "Feature", "properties": { "LocationName": "Fairbanks_GFDL" }, "geometry": { "type": "Point", "coordinates": [ -147.7163889, 64.8377778 ] } },
-{ "type": "Feature", "properties": { "LocationName": "Fairbanks_ERA" }, "geometry": { "type": "Point", "coordinates": [ -147.7163889, 64.8377778 ] } },
-{ "type": "Feature", "properties": { "LocationName": "Fairbanks_NCAR" }, "geometry": { "type": "Point", "coordinates": [ -147.7163889, 64.8377778 ] } },
+{ "type": "Feature", "properties": { "LocationName": "Fairbanks" }, "geometry": { "type": "Point", "coordinates": [ -147.7163889, 64.8377778 ] } },
 { "type": "Feature", "properties": { "LocationName": "Juneau" }, "geometry": { "type": "Point", "coordinates": [ -134.4197222, 58.3019444 ] } },
 { "type": "Feature", "properties": { "LocationName": "Nome" }, "geometry": { "type": "Point", "coordinates": [ -165.4063889, 64.5011111 ] } },
 { "type": "Feature", "properties": { "LocationName": "North Pole" }, "geometry": { "type": "Point", "coordinates": [ -147.351165262, 64.750663664 ] } },
 { "type": "Feature", "properties": { "LocationName": "Palmer" }, "geometry": { "type": "Point", "coordinates": [ -149.116999532, 61.601164262 ] } },
-{ "type": "Feature", "properties": { "LocationName": "Palmer_ERA" }, "geometry": { "type": "Point", "coordinates": [ -149.116999532, 61.601164262 ] } },
 { "type": "Feature", "properties": { "LocationName": "Utqiagvik" }, "geometry": { "type": "Point", "coordinates": [ -156.78872, 71.29058 ] } },
 { "type": "Feature", "properties": { "LocationName": "Wasilla" }, "geometry": { "type": "Point", "coordinates": [ -149.4394444, 61.5813889 ] } }
 ]

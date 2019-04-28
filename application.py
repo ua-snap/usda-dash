@@ -21,7 +21,6 @@ def get_max_days(datayear, community, threshold):
     enddate = ''
     max_start = ''
     max_end = ''
-    #threshold = 32 
     for i, (index,row) in enumerate(datayear.iterrows()):
         if (row[community] > threshold):
             if (day_counter == 0):
@@ -75,6 +74,23 @@ unit_lu = {
         'metric': 'mm'
     }
 }
+
+gcm_layout = html.Div(
+    className='control',
+    children=[
+        html.Label('Select Dataset', className='label'),
+        dcc.RadioItems(
+            labelClassName='radio',
+            options=[
+                {'label': ' ERA', 'value': 'ERA'},
+                {'label': ' GFDL', 'value': 'GFDL'},
+                {'label': ' NCAR', 'value': 'NCAR'},
+            ],
+            id='gcm',
+            value='ERA'
+        )
+    ]
+)
 
 thresholds = []
 for i in reversed(range(-50,100)):
@@ -217,7 +233,8 @@ form_elements_section = html.Div(
                             ]
                         )
                     ]
-                )
+                ),
+                gcm_layout
             ]
         )
     ]
@@ -285,14 +302,16 @@ app.layout = html.Div(
     Output('tcharts', 'figure'),
     inputs=[
         Input('community', 'value'),
-        Input('threshold', 'value')
+        Input('threshold', 'value'),
+        Input('gcm', 'value')
     ]
 )
-def temp_chart(community, threshold):
+def temp_chart(community, threshold, gcm):
     station = 'PAFA'
     acis_data = {}
     #with urllib.request.urlopen('http://data.rcc-acis.org/StnData?sid=' + station + '&sdate=1950-01-01&edate=2019-03-15&elems=4') as url:
     #    acis_data = json.loads(url.read().decode())
+    community = community + '_' + gcm
     df = pd.read_csv('data/' + community + '.csv')
     imperial_conversion_lu = {'temp':1.8,'precip':0.0393701}
     df[community] = df[community] * imperial_conversion_lu['temp'] + 32
