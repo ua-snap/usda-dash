@@ -12,6 +12,7 @@ import pandas as pd
 import geopandas as gpd
 import numpy as np
 import urllib, json
+import re
 from dash.dependencies import Input, Output, State
 
 def get_max_days(datayear, community, threshold):
@@ -311,13 +312,15 @@ def temp_chart(community, threshold, gcm):
     acis_data = {}
     #with urllib.request.urlopen('http://data.rcc-acis.org/StnData?sid=' + station + '&sdate=1950-01-01&edate=2019-03-15&elems=4') as url:
     #    acis_data = json.loads(url.read().decode())
-    community = community + '_' + gcm
-    df = pd.read_csv('data/' + community + '.csv')
+    community_name = re.sub('[^A-Za-z0-9]+', '', community) + '_' + gcm
+    comm_filename = community_name
+
+    df = pd.read_csv('data/' + comm_filename + '.csv')
     imperial_conversion_lu = {'temp':1.8,'precip':0.0393701}
-    df[community] = df[community] * imperial_conversion_lu['temp'] + 32
+    df[community_name] = df[community_name] * imperial_conversion_lu['temp'] + 32
     df['time'] = pd.to_datetime(df['time'])
     layout = {
-        'title': 'Growing Season Length for ' + community,
+        'title': community + ', Alaska: Longest Consecutive Number of Days > ' + str(threshold) + ' ' + unit_lu['temp']['imperial'] + ', ' + gcm + ' model',
 	'hovermode': 'closest',
         'hoverlabel': {
             'namelength': 20
@@ -348,7 +351,7 @@ def temp_chart(community, threshold, gcm):
     for key in sorted(years):
         df_annual = df[df['time'].dt.year == int(key)]
         df_annual['time'] = df_annual['time'].dt.strftime('%B %d')
-        years[key] = get_max_days(df_annual, community, threshold)
+        years[key] = get_max_days(df_annual, community_name, threshold)
         dates = [years[key]['startdate'], years[key]['enddate']]
         yrs = [str(key), str(key)]
         figure['data'].append({
