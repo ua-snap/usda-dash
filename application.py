@@ -59,7 +59,7 @@ application = app.server
 
 app.title = 'SNAP - USDA Garden Helper'
 
-mapbox_access_token = os.environ['MAPBOX_ACCESS_TOKEN']
+#mapbox_access_token = os.environ['MAPBOX_ACCESS_TOKEN']
 path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
 communities = gpd.read_file('CommunityList.json')
 names = list(communities.LocationName)
@@ -156,46 +156,46 @@ header_section = html.Div(
     ]
 )
 
-map_communities_trace = go.Scattermapbox(
-    lat=communities['geometry'].y,
-    lon=communities['geometry'].x,
-    mode='markers',
-    marker={
-        'size': 15,
-        'color': 'rgb(80,80,80)'
-    },
-    line={
-        'color': 'rgb(0, 0, 0)',
-        'width': 2
-    },
-    text=communities.LocationName,
-    hoverinfo='text'
-)
+#map_communities_trace = go.Scattermapbox(
+#    lat=communities['geometry'].y,
+#    lon=communities['geometry'].x,
+#    mode='markers',
+#    marker={
+#        'size': 15,
+#        'color': 'rgb(80,80,80)'
+#    },
+#    line={
+#        'color': 'rgb(0, 0, 0)',
+#        'width': 2
+#    },
+#    text=communities.LocationName,
+#    hoverinfo='text'
+#)
 
-map_layout = go.Layout(
-    autosize=True,
-    hovermode='closest',
-    mapbox=dict(
-        accesstoken=mapbox_access_token,
-        zoom=3,
-        center=dict(lat=68, lon=-120),
-        #layers=[
-            #dict(
-                #sourcetype='geojson',
-                #source=json.loads(open('./AK.geo.json', 'r').read()),
-                #type='fill',
-                #color='rgba(255,255,255,.1)'
-            #)
-        #]
-    ),
-    showlegend=False,
-    margin=dict(l=0, r=0, t=0, b=0)
-)
+#map_layout = go.Layout(
+#    autosize=True,
+#    hovermode='closest',
+#    mapbox=dict(
+#        accesstoken=mapbox_access_token,
+#        zoom=3,
+#        center=dict(lat=68, lon=-120),
+#        #layers=[
+#            #dict(
+#                #sourcetype='geojson',
+#                #source=json.loads(open('./AK.geo.json', 'r').read()),
+#                #type='fill',
+#                #color='rgba(255,255,255,.1)'
+#            #)
+#        #]
+#    ),
+#    showlegend=False,
+#    margin=dict(l=0, r=0, t=0, b=0)
+#)
 
-map_figure = go.Figure({
-    'data': [map_communities_trace],
-    'layout': map_layout
-})
+#map_figure = go.Figure({
+#    'data': [map_communities_trace],
+#    'layout': map_layout
+#})
 
 config = {
     'toImageButtonOptions': {
