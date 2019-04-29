@@ -15,6 +15,10 @@ import urllib, json
 import re
 from dash.dependencies import Input, Output, State
 
+path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
+
+data_prefix = 'https://s3-us-west-2.amazonaws.com/community-logs-data/'
+
 def get_max_days(datayear, community, threshold):
     day_counter = 0
     max_days = 0
@@ -47,6 +51,7 @@ def get_max_days(datayear, community, threshold):
 external_scripts = ['https://code.jquery.com/jquery-3.3.1.min.js']
 
 app = dash.Dash(external_scripts = external_scripts)
+app.config.requests_pathname_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
 
 # AWS Elastic Beanstalk looks for application by default,
 # if this variable (application) isn't set you will get a WSGI error.
