@@ -348,7 +348,7 @@ def temp_chart(community, threshold, gcm):
     }
     years = {}
     #for i in range (1971,2100):
-    for i in range (1979,2101,5):
+    for i in range (1979,2101,1):
         years[i] = {}
     #years = { '1982': { 'color': '#ff0000' }, '1983': { 'color': '#ff0000' }, '1984': { 'color': '#ff0000' }, '1985': { 'color': '#ff0000' }, '2008': { 'color': '#ff0000' }, '2000': { 'color': '#ff0000' }, '2010': {'color': '#ff0000'}, '2020': {'color': '#ff0000'}, '2030': {'color': '#ff0000'}, '2040': {'color': '#ff0000'}, '2050': {'color': '#ff0000'}, '2060': {'color': '#ff0000'}, '2070': {'color': '#ff0000'}, '2080': {'color': '#ff0000'}, '2090': {'color': '#ff0000'} }
     figure = {}
