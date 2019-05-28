@@ -21,6 +21,7 @@ path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
 data_prefix = 'https://s3-us-west-2.amazonaws.com/community-logs-data/'
 
 def get_max_days(datayear, community, threshold):
+    datayear['time'] = datayear['time'].dt.strftime('%B %d')
     day_counter = 0
     max_days = 0
     startdate = ''
@@ -48,6 +49,27 @@ def get_max_days(datayear, community, threshold):
                 max_end = row['time']
     return { 'ndays': max_days, 'startdate': max_start, 'enddate': max_end }
 
+def get_max_days_alt(datayear, community, threshold):
+    #print(datayear)
+    df_bools = datayear[community] > threshold
+    max_days = 0
+    boolvals = (~df_bools).cumsum()[df_bools]
+    logs = boolvals.value_counts()
+    #print(logs)
+    max_days = logs.max()
+    #print(logs.index[0])
+    check_eq = boolvals[boolvals == logs.index[0]]
+    clipbools = check_eq.clip(logs.index[0],logs.index[0])
+
+    startdateid = check_eq.index[0]
+    #print(startdateid)
+    #print(datayear.loc[startdateid].time)
+    startdate = datayear.loc[startdateid].time.strftime('%B %d')
+    enddate = (datayear.loc[startdateid].time + pd.DateOffset(days=int(logs.iloc[0]))).strftime('%B %d')
+    #print (startdate,enddate)
+
+
+    return { 'ndays': max_days, 'startdate': startdate, 'enddate': enddate }
 
 external_scripts = ['https://code.jquery.com/jquery-3.3.1.min.js']
 
@@ -356,9 +378,11 @@ def temp_chart(community, threshold, gcm):
     figure['data'] = []
     for key in sorted(years):
         df_annual = df[df['time'].dt.year == int(key)]
-        df_annual['time'] = df_annual['time'].dt.strftime('%B %d')
-        years[key] = get_max_days(df_annual, community_name, threshold)
+
+        #years[key] = get_max_days(df_annual, community_name, threshold)
+        years[key] = get_max_days_alt(df_annual, community_name, threshold)
         dates = [years[key]['startdate'], years[key]['enddate']]
+        #df_annual['time'] = df_annual['time'].dt.strftime('%B %d')
         yrs = [str(key), str(key)]
         figure['data'].append({
             'x': dates,

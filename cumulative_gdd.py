@@ -246,9 +246,6 @@ app.layout = html.Div(
     ]
 )
 def temp_chart(community, threshold, gcm):
-    station = 'PAFA'
-    acis_data = {}
-
     community_name = re.sub('[^A-Za-z0-9]+', '', community) + '_' + gcm
     comm_filename = community_name
 
@@ -280,6 +277,29 @@ def temp_chart(community, threshold, gcm):
         years[i] = { 'date': {}, 'minmin': [], 'maxmin': [] }
     figure = {}
     figure['data'] = []
+    for i in range(1980,2101):
+        df_annual = df[df['time'].dt.year == i]
+        df_pre = df_annual[df_annual[community_name] > threshold]
+        df_pre = df_pre[community_name] - threshold
+        df_cumsum = df_pre.cumsum()
+
+        dx = df_annual.set_index('time')
+        dxx = dx.to_xarray()
+        month_day_str = xr.DataArray(dxx.indexes['time'].strftime('%m-%d'), coords=dxx.coords, name='month_day_str')
+
+        print(df_cumsum)
+        figure['data'].append({
+            'x': month_day_str.values,
+            'y': df_cumsum.values,
+            'hoverinfo': 'y',
+            'name': i,
+            #'text': ds_min[community_name].values,
+            'mode': 'lines',
+            'marker': {
+            }
+        })
+    '''
+    figure['data'] = []
     decade_lu = { '1980': 'rgb(150,150,150)', '2010':'rgb(0,50,150)' , '2040': 'rgb(75,125,255)', '2070': 'rgb(175,225,255)'}
     for key in sorted(years):
         df_t = df[df['time'].dt.year >= int(key)]
@@ -295,31 +315,12 @@ def temp_chart(community, threshold, gcm):
             'hoverinfo': 'y',
             'name': str(key) + 's',
             'text': ds_min[community_name].values,
-            'mode': 'markers',
+            'mode': 'lines',
             'marker': {
                 'color': decade_lu[str(key)]
             }
         })
-        '''
-        figure['data'].append({
-            'x': categoryarray,
-            'y': ds_max[community_name].values,
-            'name': str(key) + 's max',
-            'mode': 'markers',
-            'marker': {
-                'color': decade_lu[str(key)]
-            }
-        })
-        figure['data'].append({
-            'x': categoryarray,
-            'y': ds_mean[community_name].values,
-            'name': str(key) + 's mean',
-            'mode': 'markers',
-            'marker': {
-                'color': decade_lu[str(key)]
-            }
-        })
-        '''
+    '''
     figure['layout'] = layout
     return figure
     
