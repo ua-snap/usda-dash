@@ -291,9 +291,9 @@ def temp_chart(community, threshold, gcm):
         figure['data'].append({
             'x': month_day_str.values,
             'y': df_cumsum.values,
-            'hoverinfo': 'y',
+            'hoverinfo': 'text+y',
             'name': i,
-            #'text': ds_min[community_name].values,
+            'text': i,
             'mode': 'lines',
             'marker': {
             }
