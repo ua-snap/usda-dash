@@ -50,23 +50,17 @@ def get_max_days(datayear, community, threshold):
     return { 'ndays': max_days, 'startdate': max_start, 'enddate': max_end }
 
 def get_max_days_alt(datayear, community, threshold):
-    #print(datayear)
     df_bools = datayear[community] > threshold
     max_days = 0
     boolvals = (~df_bools).cumsum()[df_bools]
     logs = boolvals.value_counts()
-    #print(logs)
     max_days = logs.max()
-    #print(logs.index[0])
     check_eq = boolvals[boolvals == logs.index[0]]
     clipbools = check_eq.clip(logs.index[0],logs.index[0])
 
     startdateid = check_eq.index[0]
-    #print(startdateid)
-    #print(datayear.loc[startdateid].time)
     startdate = datayear.loc[startdateid].time.strftime('%B %d')
     enddate = (datayear.loc[startdateid].time + pd.DateOffset(days=int(logs.iloc[0]))).strftime('%B %d')
-    #print (startdate,enddate)
 
 
     return { 'ndays': max_days, 'startdate': startdate, 'enddate': enddate }
@@ -371,7 +365,15 @@ def temp_chart(community, threshold, gcm):
     }
     years = {}
     #for i in range (1971,2100):
-    for i in range (1979,2101,1):
+    minyear = 1979
+    maxyear = 2101
+    if (gcm == 'ERA'):
+        minyear = 1979
+        maxyear = 2014
+    else:
+        minyear = 1980
+        maxyear = 2100
+    for i in range (minyear,maxyear+1,1):
         years[i] = {}
     #years = { '1982': { 'color': '#ff0000' }, '1983': { 'color': '#ff0000' }, '1984': { 'color': '#ff0000' }, '1985': { 'color': '#ff0000' }, '2008': { 'color': '#ff0000' }, '2000': { 'color': '#ff0000' }, '2010': {'color': '#ff0000'}, '2020': {'color': '#ff0000'}, '2030': {'color': '#ff0000'}, '2040': {'color': '#ff0000'}, '2050': {'color': '#ff0000'}, '2060': {'color': '#ff0000'}, '2070': {'color': '#ff0000'}, '2080': {'color': '#ff0000'}, '2090': {'color': '#ff0000'} }
     figure = {}
@@ -412,7 +414,6 @@ def temp_chart(community, threshold, gcm):
         total_days += years[i + 8]['ndays']
         total_days += years[i + 9]['ndays']
         average_days = total_days / 10
-        print(str(i) + ' to ' + str(i + 10) + ' ' + str(average_days))
     '''
     tMod = 32 
     figure['layout'] = layout

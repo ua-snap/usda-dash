@@ -73,7 +73,7 @@ gcm_layout = html.Div(
 )
 
 thresholds = []
-for i in reversed(range(-50,100)):
+for i in reversed(range(0,15,5)):
     thresholds.append(i)
 
 threshold_layout = dcc.Dropdown(
@@ -272,15 +272,15 @@ def temp_chart(community, threshold, gcm):
             'type': 'category',
         }
     }
-    years = {}
-    for i in range (1980,2100,30):
-        years[i] = { 'date': {}, 'minmin': [], 'maxmin': [] }
     figure = {}
     figure['data'] = []
-    for i in range(1980,2101):
+    #for i in range(1980,2101):
+    for i in range(1990,1992):
         df_annual = df[df['time'].dt.year == i]
         df_pre = df_annual[df_annual[community_name] > threshold]
+        print(df_annual)
         df_pre = df_pre[community_name] - threshold
+        print(df_pre)
         df_cumsum = df_pre.cumsum()
 
         dx = df_annual.set_index('time')
