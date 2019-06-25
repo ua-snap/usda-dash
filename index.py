@@ -5,7 +5,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 
-from application import app
+from application import app,application
 from apps import logs, annual_min, cumulative_gdd
 
 server = flask.Flask(__name__)
