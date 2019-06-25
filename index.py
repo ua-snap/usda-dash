@@ -28,4 +28,5 @@ def display_page(pathname):
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 8080))
     debug = os.environ.get("DEBUG", False)
-    app.server.run(debug=debug, port=port, threaded=True)
+    app.server.run(debug=debug, port=port)
+    #app.server.run(debug=debug, port=port, threaded=True)
