@@ -12,6 +12,7 @@ app = dash.Dash(external_scripts = external_scripts, server=server)
 
 # AWS Elastic Beanstalk looks for application by default,
 # if this variable (application) isn't set you will get a WSGI error.
+app.config['suppress_callback_exceptions']=True
 application = app.server
 
-app.config['suppress_callback_exceptions']=True
+
