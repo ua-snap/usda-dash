@@ -66,16 +66,6 @@ gcm_layout = html.Div(
     ]
 )
 
-thresholds = []
-for i in reversed(range(-50,100)):
-    thresholds.append(i)
-
-threshold_layout = dcc.Dropdown(
-    id='threshold',
-    options=[{'label':str(t) + unit_lu['temp']['imperial'], 'value':t} for t in thresholds],
-    value=32
-)
-
 config = {
     'toImageButtonOptions': {
         'format': 'svg',
@@ -109,13 +99,6 @@ form_elements_section = html.Div(
                                 community_layout 
                             ]
                         ),
-                        html.Div(
-                            className='column',
-                            children=[ 
-                                html.Label('Select Minimum Temperature Threshold', className='label'),
-                                threshold_layout 
-                            ]
-                        )
                     ]
                 ),
                 gcm_layout
@@ -150,11 +133,10 @@ layout = html.Div(
     Output('acharts', 'figure'),
     inputs=[
         Input('community', 'value'),
-        Input('threshold', 'value'),
         Input('gcm', 'value')
     ]
 )
-def temp_chart(community, threshold, gcm):
+def temp_chart(community, gcm):
     station = 'PAFA'
     acis_data = {}
 
