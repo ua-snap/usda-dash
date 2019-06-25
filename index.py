@@ -25,5 +25,6 @@ def display_page(pathname):
         return '404'
 
 if __name__ == '__main__':
-    app.run_server(debug=False, port=8050)
-    #app.run_server(debug=True, port=8050)
+    port = int(os.environ.get("PORT", 8080))
+    debug = os.environ.get("DEBUG", False)
+    app.server.run(debug=debug, port=port, threaded=True)
