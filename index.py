@@ -1,4 +1,5 @@
 import os
+from random import randint
 import flask
 import dash_core_components as dcc
 import dash_html_components as html
@@ -6,6 +7,11 @@ from dash.dependencies import Input, Output
 
 from application import app
 from apps import logs, annual_min, cumulative_gdd
+
+server = flask.Flask(__name__)
+#app.config.requests_pathname_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
+#app = dash.Dash(external_scripts = external_scripts, server=server, requests_pathname_prefix=os.environ['REQUESTS_PATHNAME_PREFIX'])
+server.secret_key = os.environ.get("secret_key", str(randint(0, 1000000)))
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
