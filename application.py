@@ -1,9 +1,11 @@
 import os
+import flask
 import dash
 
 external_scripts = ['https://code.jquery.com/jquery-3.3.1.min.js']
 
-app = dash.Dash(external_scripts = external_scripts)
+server = flask.Flask(__name__)
+app = dash.Dash(external_scripts = external_scripts, server=server)
 app.config.requests_pathname_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
 
 # AWS Elastic Beanstalk looks for application by default,
