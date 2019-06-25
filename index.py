@@ -15,6 +15,8 @@ app.layout = html.Div([
 @app.callback(Output('page-content', 'children'),
               [Input('url', 'pathname')])
 def display_page(pathname):
+    if pathname is None:
+        return 'Loading...'
     if pathname == '/':
          return logs.layout
     elif pathname == '/logs':

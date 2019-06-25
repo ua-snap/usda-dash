@@ -222,6 +222,7 @@ def temp_chart(community, threshold, gcm):
         dates = [years[key]['startdate'], years[key]['enddate']]
         #df_annual['time'] = df_annual['time'].dt.strftime('%B %d')
         yrs = [str(key), str(key)]
+        '''
         figure['data'].append({
             'x': dates,
             'y': yrs,
@@ -263,7 +264,6 @@ def temp_chart(community, threshold, gcm):
                 }
             }
         })
-        '''
     tMod = 32 
     figure['layout'] = layout
     return figure
