@@ -17,6 +17,7 @@ plotly = "*"
 dash-dangerously-set-inner-html = "*"
 visdcc = "*"
 xarray = "*"
+gunicorn = "*"
 
 
 [dev-packages]
