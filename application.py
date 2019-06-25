@@ -1,13 +1,13 @@
 import os
+from random import randint
 import flask
 import dash
-
-external_scripts = ['https://code.jquery.com/jquery-3.3.1.min.js']
 
 server = flask.Flask(__name__)
 #app.config.requests_pathname_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
 #app = dash.Dash(external_scripts = external_scripts, server=server, requests_pathname_prefix=os.environ['REQUESTS_PATHNAME_PREFIX'])
-app = dash.Dash(external_scripts = external_scripts, server=server)
+server.secret_key = os.environ.get("secret_key", str(randint(0, 1000000)))
+app = dash.Dash(__name__,server=server)
 
 
 # AWS Elastic Beanstalk looks for application by default,
