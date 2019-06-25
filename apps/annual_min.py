@@ -18,21 +18,14 @@ import urllib, json
 import re
 from dash.dependencies import Input, Output, State
 from apps import common
+from application import app
 
 path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
 
 data_prefix = 'https://s3-us-west-2.amazonaws.com/community-logs-data/'
 
-external_scripts = ['https://code.jquery.com/jquery-3.3.1.min.js']
-
-app = dash.Dash(external_scripts = external_scripts)
-app.config.requests_pathname_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
-
 # AWS Elastic Beanstalk looks for application by default,
 # if this variable (application) isn't set you will get a WSGI error.
-application = app.server
-
-app.title = 'SNAP - USDA Garden Helper'
 
 #mapbox_access_token = os.environ['MAPBOX_ACCESS_TOKEN']
 path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
@@ -68,13 +61,13 @@ gcm_layout = html.Div(
                 {'label': ' NCAR', 'value': 'NCAR'},
             ],
             id='gcm',
-            value='ERA'
+            value='GFDL'
         )
     ]
 )
 
 thresholds = []
-for i in reversed(range(0,15,5)):
+for i in reversed(range(-50,100)):
     thresholds.append(i)
 
 threshold_layout = dcc.Dropdown(
@@ -85,7 +78,6 @@ threshold_layout = dcc.Dropdown(
 
 config = {
     'toImageButtonOptions': {
-        'title': 'Export to SVG',
         'format': 'svg',
         'height': 600,
         'width': 1600,
@@ -96,7 +88,7 @@ config = {
 graph_layout = html.Div(
     className='container',
     children=[
-        dcc.Graph(id='tcharts', config=config)
+        dcc.Graph(id='acharts', config=config)
     ]
 )
 
@@ -133,7 +125,7 @@ form_elements_section = html.Div(
 )
 
 
-app.layout = html.Div(
+layout = html.Div(
     children=[
         common.header(),
         html.Div(
@@ -155,7 +147,7 @@ app.layout = html.Div(
 
 
 @app.callback(
-    Output('tcharts', 'figure'),
+    Output('acharts', 'figure'),
     inputs=[
         Input('community', 'value'),
         Input('threshold', 'value'),
@@ -163,6 +155,9 @@ app.layout = html.Div(
     ]
 )
 def temp_chart(community, threshold, gcm):
+    station = 'PAFA'
+    acis_data = {}
+
     community_name = re.sub('[^A-Za-z0-9]+', '', community) + '_' + gcm
     comm_filename = community_name
 
@@ -189,33 +184,10 @@ def temp_chart(community, threshold, gcm):
             'type': 'category',
         }
     }
+    years = {}
+    for i in range (1980,2100,30):
+        years[i] = { 'date': {}, 'minmin': [], 'maxmin': [] }
     figure = {}
-    figure['data'] = []
-    #for i in range(1980,2101):
-    for i in range(1990,1992):
-        df_annual = df[df['time'].dt.year == i]
-        df_pre = df_annual[df_annual[community_name] > threshold]
-        print(df_annual)
-        df_pre = df_pre[community_name] - threshold
-        print(df_pre)
-        df_cumsum = df_pre.cumsum()
-
-        dx = df_annual.set_index('time')
-        dxx = dx.to_xarray()
-        month_day_str = xr.DataArray(dxx.indexes['time'].strftime('%m-%d'), coords=dxx.coords, name='month_day_str')
-
-        print(df_cumsum)
-        figure['data'].append({
-            'x': month_day_str.values,
-            'y': df_cumsum.values,
-            'hoverinfo': 'text+y',
-            'name': i,
-            'text': i,
-            'mode': 'lines',
-            'marker': {
-            }
-        })
-    '''
     figure['data'] = []
     decade_lu = { '1980': 'rgb(150,150,150)', '2010':'rgb(0,50,150)' , '2040': 'rgb(75,125,255)', '2070': 'rgb(175,225,255)'}
     for key in sorted(years):
@@ -232,15 +204,30 @@ def temp_chart(community, threshold, gcm):
             'hoverinfo': 'y',
             'name': str(key) + 's',
             'text': ds_min[community_name].values,
-            'mode': 'lines',
+            'mode': 'markers',
             'marker': {
                 'color': decade_lu[str(key)]
             }
         })
-    '''
+        '''
+        figure['data'].append({
+            'x': categoryarray,
+            'y': ds_max[community_name].values,
+            'name': str(key) + 's max',
+            'mode': 'markers',
+            'marker': {
+                'color': decade_lu[str(key)]
+            }
+        })
+        figure['data'].append({
+            'x': categoryarray,
+            'y': ds_mean[community_name].values,
+            'name': str(key) + 's mean',
+            'mode': 'markers',
+            'marker': {
+                'color': decade_lu[str(key)]
+            }
+        })
+        '''
     figure['layout'] = layout
     return figure
-    
-
-if __name__ == '__main__':
-    application.run(debug=True, port=8180)

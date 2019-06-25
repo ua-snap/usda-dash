@@ -4,8 +4,17 @@ import dash_html_components as html
 
 path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
 
+def menu():
+    menu = html.Div([
+        #dcc.Link('Home   ', href='/'),
+        dcc.Link('LOGS  | ', href='/logs'),
+        dcc.Link('ANNUAL MIN  | ', href='/annual_min'),
+        dcc.Link('CUMULATIVE GDD    ', href='/cumulative_gdd')
+    ])
+    return menu
+
 def header():
-    return html.Div(
+    header = html.Div(
         className='header',
         children=[
             html.Div(
@@ -43,7 +52,8 @@ def header():
                                                 className='subtitle is-4'
                                             )
                                         ]
-                                    )
+                                    ),
+                                    menu()
                                 ]
                             )
                         ]
@@ -52,10 +62,11 @@ def header():
             )
         ]
     )
+    return header
 
 
 def footer():
-    return html.Footer(
+    footer = html.Footer(
         className='footer has-text-centered',
         children=[
             html.Div(
@@ -90,3 +101,4 @@ def footer():
             )
         ]
     )
+    return footer
