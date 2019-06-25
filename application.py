@@ -401,20 +401,33 @@ def temp_chart(community, threshold, gcm):
                 }
             }
         })
-    '''
-    for i in range(1980,2100,10):
-        total_days = years[i]['ndays']
-        total_days += years[i + 1]['ndays']
-        total_days += years[i + 2]['ndays']
-        total_days += years[i + 3]['ndays']
-        total_days += years[i + 4]['ndays']
-        total_days += years[i + 5]['ndays']
-        total_days += years[i + 6]['ndays']
-        total_days += years[i + 7]['ndays']
-        total_days += years[i + 8]['ndays']
-        total_days += years[i + 9]['ndays']
-        average_days = total_days / 10
-    '''
+        '''
+    for i in range(minyear,maxyear-9,10):
+        decade_dict = {}
+        for j in range(0,10):
+            decade_dict[i + j] =  years[i + j]
+        dsorted = sorted(decade_dict, key=lambda key: decade_dict[key]['ndays'])
+        print(dsorted)
+        decade_90pct = years[dsorted[1]]
+        print(decade_90pct)
+        dates = [decade_90pct['startdate'], decade_90pct['enddate']]
+        yrs = [str(i) + '-' +  str(i + 9), str(i) + '-' +  str(i + 9)]
+        figure['data'].append({
+            'x': dates,
+            'y': yrs,
+            #'text': ['Date of Thaw','Date of Freeze'],
+            'name': str(decade_90pct['ndays']) + ' Days > ' + str(threshold) + ' ' + unit_lu['temp']['imperial'] + ', ',
+            'line': {
+                'width': 8,
+            },
+            'marker': {
+                'size': 25,
+                'line': {
+                    'width': 5,
+                }
+            }
+        })
+        '''
     tMod = 32 
     figure['layout'] = layout
     return figure
