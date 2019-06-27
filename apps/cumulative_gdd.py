@@ -185,7 +185,13 @@ def temp_chart(community, threshold, gcm):
     figure = {}
     figure['data'] = []
     #for i in range(1980,2101):
-    for i in range(1990,2014):
+    if (gcm == 'ERA'):
+        minyear = 1980
+        maxyear = 2015
+    else:
+        minyear = 1980
+        maxyear = 2101
+    for i in range(minyear,maxyear):
         df_annual = df[df['time'].dt.year == i]
         df_annual['time'] = df_annual['time'].dt.strftime('%B %d')
         df_pre = df_annual[df_annual[community_name] > threshold]
