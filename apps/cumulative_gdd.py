@@ -199,14 +199,18 @@ def temp_chart(community, threshold, gcm):
         df_cumsum = df_pre_thresh.cumsum()
         dfp = df_pre
         dfp[community_name] = df_cumsum
+        yearcolor = (i - minyear) / (maxyear - minyear) * 255
+        linecolor = 'rgb(0,' + str(yearcolor) + ',0)'
         figure['data'].append({
             'x': dfp['time'],
             'y': dfp[community_name],
             'hoverinfo': 'text+y',
             'name': i,
             'text': i,
+
             'mode': 'lines',
             'marker': {
+                'color': linecolor
             }
         })
     '''
