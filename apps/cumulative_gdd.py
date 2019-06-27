@@ -163,7 +163,7 @@ def temp_chart(community, threshold, gcm):
     df[community_name] = df[community_name] * imperial_conversion_lu['temp'] + 32
     df['time'] = pd.to_datetime(df['time'], format='%Y-%m-%d')
     layout = {
-        'title': community + ', Alaska: Daily Minimum Temps ' + unit_lu['temp']['imperial'] + ', ' + gcm + ' model',
+        'title': community + ', Alaska: Cumulative Growing Degree Days at ' + str(threshold) + unit_lu['temp']['imperial'] + ', ' + gcm + ' model',
 	'hovermode': 'closest',
         'hoverlabel': {
             'namelength': 20
