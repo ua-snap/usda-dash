@@ -246,9 +246,7 @@ def temp_chart(community, threshold, gcm):
         for j in range(0,10):
             decade_dict[i + j] =  years[i + j]
         dsorted = sorted(decade_dict, key=lambda key: decade_dict[key]['ndays'])
-        print(dsorted)
         decade_90pct = years[dsorted[1]]
-        print(decade_90pct)
         dates = [decade_90pct['startdate'], decade_90pct['enddate']]
         yrs = [str(i) + '-' +  str(i + 9), str(i) + '-' +  str(i + 9)]
         figure['data'].append({
