@@ -79,15 +79,17 @@ gcm_layout = html.Div(
     ]
 )
 
-thresholds = []
-for i in reversed(range(-50,100)):
-    thresholds.append(i)
-
 threshold_layout = dcc.Dropdown(
     id='threshold',
-    options=[{'label':str(t) + unit_lu['temp']['imperial'], 'value':t} for t in thresholds],
+    options=[
+        {'label': ' 27 °F (Hard Frost)', 'value': 27},
+        {'label': ' 32 °F (Light Frost)', 'value': 32},
+        {'label': ' 40 °F (Cold Crops)', 'value': 40},
+        {'label': ' 50 °F (Warm Crops)', 'value': 50},
+    ],
     value=32
 )
+
 
 config = {
     'toImageButtonOptions': {
