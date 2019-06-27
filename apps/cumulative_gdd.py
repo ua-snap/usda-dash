@@ -183,22 +183,17 @@ def temp_chart(community, threshold, gcm):
     figure = {}
     figure['data'] = []
     #for i in range(1980,2101):
-    for i in range(1990,1992):
+    for i in range(1990,2014):
         df_annual = df[df['time'].dt.year == i]
+        df_annual['time'] = df_annual['time'].dt.strftime('%B %d')
         df_pre = df_annual[df_annual[community_name] > threshold]
-        print(df_annual)
-        df_pre = df_pre[community_name] - threshold
-        print(df_pre)
-        df_cumsum = df_pre.cumsum()
-
-        dx = df_annual.set_index('time')
-        dxx = dx.to_xarray()
-        month_day_str = xr.DataArray(dxx.indexes['time'].strftime('%m-%d'), coords=dxx.coords, name='month_day_str')
-
-        print(df_cumsum)
+        df_pre_thresh = df_pre[community_name] - threshold
+        df_cumsum = df_pre_thresh.cumsum()
+        dfp = df_pre
+        dfp[community_name] = df_cumsum
         figure['data'].append({
-            'x': month_day_str.values,
-            'y': df_cumsum.values,
+            'x': dfp['time'],
+            'y': dfp[community_name],
             'hoverinfo': 'text+y',
             'name': i,
             'text': i,
