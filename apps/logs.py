@@ -69,9 +69,9 @@ gcm_layout = html.Div(
         dcc.RadioItems(
             labelClassName='radio',
             options=[
-                {'label': ' ERA', 'value': 'ERA'},
-                {'label': ' GFDL', 'value': 'GFDL'},
-                {'label': ' NCAR', 'value': 'NCAR'},
+                {'label': ' Historical (ERA)', 'value': 'ERA'},
+                {'label': ' Model Projection (GFDL)', 'value': 'GFDL'},
+                {'label': ' Model Projection (NCAR)', 'value': 'NCAR'},
             ],
             id='gcm',
             value='ERA'
@@ -82,7 +82,7 @@ gcm_layout = html.Div(
 threshold_layout = dcc.Dropdown(
     id='threshold',
     options=[
-        {'label': ' 27 °F (Hard Frost)', 'value': 27},
+        {'label': ' 28 °F (Hard Frost)', 'value': 28},
         {'label': ' 32 °F (Light Frost)', 'value': 32},
         {'label': ' 40 °F (Cold Crops)', 'value': 40},
         {'label': ' 50 °F (Warm Crops)', 'value': 50},
