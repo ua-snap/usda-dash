@@ -56,7 +56,6 @@ gcm_layout = html.Div(
         dcc.RadioItems(
             labelClassName='radio',
             options=[
-                {'label': ' ERA', 'value': 'ERA'},
                 {'label': ' GFDL', 'value': 'GFDL'},
                 {'label': ' NCAR', 'value': 'NCAR'},
             ],
@@ -127,6 +126,44 @@ layout = html.Div(
     ]
 )
 
+def add_traces(community, gcm, figure):
+    community_name = re.sub('[^A-Za-z0-9]+', '', community) + '_' + gcm
+    comm_filename = community_name
+
+    df = pd.read_csv('https://s3-us-west-2.amazonaws.com/community-logs-data/' + comm_filename + '.csv')
+    imperial_conversion_lu = {'temp':1.8,'precip':0.0393701}
+    df[community_name] = df[community_name] * imperial_conversion_lu['temp'] + 32
+    df['time'] = pd.to_datetime(df['time'], format='%Y-%m-%d')
+    years = {}
+    if (gcm == 'ERA'):
+        for i in range (1980,2010,30):
+            years[i] = { 'date': {}, 'minmin': [], 'maxmin': [] }
+    else:
+        for i in range (2010,2100,30):
+            years[i] = { 'date': {}, 'minmin': [], 'maxmin': [] }
+    decade_lu = { '1980': '#999999', '2010': '#bdd7e7' , '2040': '#6baed6', '2070': '#2171b5'}
+    for key in sorted(years):
+        df_t = df[df['time'].dt.year >= int(key)]
+        df_annual = df_t[df_t['time'].dt.year < int(key) + 30]
+        if (gcm == 'ERA'):
+            title = str(key) + 's (Hist)'
+        else: 
+            title = str(key) + 's (Projected)'
+        dx = df_annual.set_index('time')
+        dxx = dx.to_xarray()
+        month_day_str = xr.DataArray(dxx.indexes['time'].strftime('%m-%d'), coords=dxx.coords, name='month_day_str')
+        ds_min = dxx.groupby(month_day_str).min()
+        figure['data'].append({
+            'x': month_day_str.values,
+            'y': ds_min[community_name].values,
+            'hoverinfo': 'y',
+            'name': title,
+            'text': ds_min[community_name].values,
+            'mode': 'markers',
+            'marker': {
+                'color': decade_lu[str(key)]
+            }
+        })
 
 
 @app.callback(
@@ -137,16 +174,11 @@ layout = html.Div(
     ]
 )
 def temp_chart(community, gcm):
-    station = 'PAFA'
-    acis_data = {}
+    figure = {}
+    figure['data'] = []
+    add_traces(community, 'ERA', figure)
+    add_traces(community, gcm, figure)
 
-    community_name = re.sub('[^A-Za-z0-9]+', '', community) + '_' + gcm
-    comm_filename = community_name
-
-    df = pd.read_csv('https://s3-us-west-2.amazonaws.com/community-logs-data/' + comm_filename + '.csv')
-    imperial_conversion_lu = {'temp':1.8,'precip':0.0393701}
-    df[community_name] = df[community_name] * imperial_conversion_lu['temp'] + 32
-    df['time'] = pd.to_datetime(df['time'], format='%Y-%m-%d')
     layout = {
             'title': 'Daily Minimum Temps (' + unit_lu['temp']['imperial'] + '): ' + community + ', Alaska, ' + gcm + ' model',
 	'hovermode': 'closest',
@@ -166,50 +198,5 @@ def temp_chart(community, gcm):
             'type': 'category',
         }
     }
-    years = {}
-    for i in range (1980,2100,30):
-        years[i] = { 'date': {}, 'minmin': [], 'maxmin': [] }
-    figure = {}
-    figure['data'] = []
-    decade_lu = { '1980': 'rgb(150,150,150)', '2010':'rgb(0,50,150)' , '2040': 'rgb(75,125,255)', '2070': 'rgb(175,225,255)'}
-    for key in sorted(years):
-        df_t = df[df['time'].dt.year >= int(key)]
-        df_annual = df_t[df_t['time'].dt.year < int(key) + 30]
-
-        dx = df_annual.set_index('time')
-        dxx = dx.to_xarray()
-        month_day_str = xr.DataArray(dxx.indexes['time'].strftime('%m-%d'), coords=dxx.coords, name='month_day_str')
-        ds_min = dxx.groupby(month_day_str).min()
-        figure['data'].append({
-            'x': month_day_str.values,
-            'y': ds_min[community_name].values,
-            'hoverinfo': 'y',
-            'name': str(key) + 's',
-            'text': ds_min[community_name].values,
-            'mode': 'markers',
-            'marker': {
-                'color': decade_lu[str(key)]
-            }
-        })
-        '''
-        figure['data'].append({
-            'x': categoryarray,
-            'y': ds_max[community_name].values,
-            'name': str(key) + 's max',
-            'mode': 'markers',
-            'marker': {
-                'color': decade_lu[str(key)]
-            }
-        })
-        figure['data'].append({
-            'x': categoryarray,
-            'y': ds_mean[community_name].values,
-            'name': str(key) + 's mean',
-            'mode': 'markers',
-            'marker': {
-                'color': decade_lu[str(key)]
-            }
-        })
-        '''
     figure['layout'] = layout
     return figure
