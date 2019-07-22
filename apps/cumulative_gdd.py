@@ -143,7 +143,7 @@ layout = html.Div(
     ]
 )
 
-def add_traces(community, threshold, gcm, figure):
+def add_traces(community, threshold, gcm, figure, bx):
     community_name = re.sub('[^A-Za-z0-9]+', '', community) + '_' + gcm
     comm_filename = community_name
 
@@ -163,7 +163,12 @@ def add_traces(community, threshold, gcm, figure):
         dx_decade = dx.temp[dx['time'].dt.year >= i]
         dx_decade = dx_decade[dx_decade['time'].dt.year < i+10]
         month_day_str = xr.DataArray(dx_decade.indexes['time'].strftime('%m-%d'), coords=dx_decade.coords, name='month_day_str')
-        dx_mean = dx_decade.groupby(month_day_str).mean()
+        #dx_mean = dx_decade.groupby(month_day_str).mean()
+        if (gcm != 'ERA'):
+            dx_pre_mean = dx_decade.groupby(month_day_str).mean()
+            dx_mean = dx_pre_mean - (bx * 1.8)
+        else:
+            dx_mean = dx_decade.groupby(month_day_str).mean()
         df_pre = dx_mean[dx_mean.values > threshold]
         df_pre_thresh = df_pre - threshold
         df_cumsum = df_pre_thresh.cumsum()
@@ -198,8 +203,9 @@ def add_traces(community, threshold, gcm, figure):
 def temp_chart(community, threshold, gcm):
     figure = {}
     figure['data'] = []
-    add_traces(community, threshold, 'ERA', figure)
-    add_traces(community, threshold, gcm, figure)
+    bx = common.calc_bias(community, gcm)
+    add_traces(community, threshold, 'ERA', figure, bx)
+    add_traces(community, threshold, gcm, figure, bx)
     layout = {
             'title': 'Cumulative Growing Degrees over ' + str(threshold) + unit_lu['temp']['imperial'] + ': ' + community + ', Alaska' +  ', ' + gcm + ' model',
 	'hovermode': 'closest',

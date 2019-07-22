@@ -10,6 +10,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import dash_dangerously_set_inner_html as ddsih
 import pandas as pd
+import xarray as xr
 import geopandas as gpd
 import numpy as np
 import urllib, json
@@ -22,8 +23,11 @@ path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
 
 data_prefix = 'https://s3-us-west-2.amazonaws.com/community-logs-data/'
 
-def get_max_days_alt(datayear, community, threshold):
-    df_bools = datayear[community] > threshold
+def get_max_days_alt(datayear, community, threshold, bx, gcm):
+    if (gcm != 'ERA'):
+        df_bools = (datayear[community] - (bx * 1.8)) > threshold
+    else:
+        df_bools = datayear[community] > threshold
     max_days = 0
     boolvals = (~df_bools).cumsum()[df_bools]
     logs = boolvals.value_counts()
@@ -157,7 +161,7 @@ layout = html.Div(
     ]
 )
 
-def add_time_series(community,threshold,gcm,figure):
+def add_time_series(community,threshold,gcm,figure,bx):
     community_name = re.sub('[^A-Za-z0-9]+', '', community) + '_' + gcm
     comm_filename = community_name
     df = pd.read_csv('https://s3-us-west-2.amazonaws.com/community-logs-data/' + comm_filename + '.csv')
@@ -174,12 +178,12 @@ def add_time_series(community,threshold,gcm,figure):
     else:
         minyear = 2010
         maxyear = 2100
-    for i in range (minyear,maxyear+1,1):
+    for i in range (minyear,maxyear,1):
         years[i] = {}
 
     for key in sorted(years):
         df_annual = df[df['time'].dt.year == int(key)]
-        years[key] = get_max_days_alt(df_annual, community_name, threshold)
+        years[key] = get_max_days_alt(df_annual, community_name, threshold, bx, gcm)
     for i in range(minyear,maxyear-9,10):
         decade_dict = {}
         for j in range(0,10):
@@ -227,8 +231,9 @@ def temp_chart(community, threshold, gcm):
     #    acis_data = json.loads(url.read().decode())
     figure = {}
     figure['data'] = []
-    add_time_series(community, threshold, 'ERA', figure)
-    add_time_series(community, threshold, gcm, figure)
+    bx = common.calc_bias(community,gcm)
+    add_time_series(community, threshold, 'ERA', figure, bx)
+    add_time_series(community, threshold, gcm, figure, bx)
     layout = {
         'title': 'Growing Season (Start, Length, End), #Days > ' + str(threshold) + ' ' + unit_lu['temp']['imperial'] + ', ' + community + ', Alaska, ' + gcm + ' model',
 	'hovermode': 'closest',
