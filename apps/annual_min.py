@@ -132,7 +132,7 @@ def add_traces(community, gcm, figure):
 
     df = pd.read_csv('https://s3-us-west-2.amazonaws.com/community-logs-data/' + comm_filename + '.csv')
     imperial_conversion_lu = {'temp':1.8,'precip':0.0393701}
-    df[community_name] = df[community_name] * imperial_conversion_lu['temp'] + 32
+    df['temp'] = df['temp'] * imperial_conversion_lu['temp'] + 32
     df['time'] = pd.to_datetime(df['time'], format='%Y-%m-%d')
     years = {}
     if (gcm == 'ERA'):
@@ -155,10 +155,10 @@ def add_traces(community, gcm, figure):
         ds_min = dxx.groupby(month_day_str).min()
         figure['data'].append({
             'x': month_day_str.values,
-            'y': ds_min[community_name].values,
+            'y': ds_min['temp'].values,
             'hoverinfo': 'y',
             'name': title,
-            'text': ds_min[community_name].values,
+            'text': ds_min['temp'].values,
             'mode': 'markers',
             'marker': {
                 'color': decade_lu[str(key)]
@@ -186,7 +186,8 @@ def temp_chart(community, gcm):
             'namelength': 20
         },
         'legend': {
-            'text': 'Legend Title'
+            'text': 'Legend Title',
+            'traceorder': 'reversed'
         },
 	'type': 'date',
 	'height': 500,
