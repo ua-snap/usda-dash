@@ -54,7 +54,7 @@ community_layout = dcc.Dropdown(
 
 unit_lu = {
     'temp': {
-        'imperial': ' °F',
+        'imperial': '°F',
         'metric': ' °C'
     },
     'precip': {
@@ -82,10 +82,10 @@ gcm_layout = html.Div(
 threshold_layout = dcc.Dropdown(
     id='threshold',
     options=[
-        {'label': ' 28 °F (Hard Frost)', 'value': 28},
-        {'label': ' 32 °F (Light Frost)', 'value': 32},
-        {'label': ' 40 °F (Cold Crops)', 'value': 40},
-        {'label': ' 50 °F (Warm Crops)', 'value': 50},
+        {'label': ' 28°F (Hard Frost)', 'value': 28},
+        {'label': ' 32°F (Light Frost)', 'value': 32},
+        {'label': ' 40°F (Cold Crops)', 'value': 40},
+        {'label': ' 50°F (Warm Crops)', 'value': 50},
     ],
     value=32
 )
@@ -150,6 +150,20 @@ layout = html.Div(
                     children=[
                         html.Div(id='location', className='container', style={ 'visibility': 'hidden' }),
                         form_elements_section,
+                        dcc.Markdown(
+                            """
+### Length of Growing Season
+##### About growing season length
+Time between the last cold day in spring and the first cold day in fall. Here, you can see projections of start/end dates and the number of days in between. This can help you decide if a crop is worth planting in your area. ”Days to maturity” information is often provided on seed packets. But keep in mind that cool temperatures can slow growth, so also check our “Cumulative Growing Degree Days” tool.
+##### How to choose a temperature threshold
+Planting guides refer to “last frost” in spring and “first frost” in fall, implying minimum daily temperatures of 32°F. We offer more thresholds to provide flexibility in considering cold-hardy crops that may be harvested only when a hard frost is reached (28°F), or more delicate crops that cannot grow when temperatures are below a higher threshold. Such plants might be kept in a greenhouse until a later planting date, and harvested earlier. Learn more about specific crops here [link]
+##### Why does the growing season seem so irregular?
+If you choose a high temperature threshold, or live in a very cold region, you may see results that look short and uneven. This is because the tool finds the longest consecutive period during which the daily minimum temperature never drops below the selected temperature. If just one day is below that value, the “season” ends at that point. Be sure to choose thresholds that make sense for your area.
+                            """
+                        ,
+                        className='content is-size-6'
+                        ),
+                        common.infotext(),
                         common.footer()
                     ]
                 )
@@ -189,12 +203,15 @@ def add_time_series(community,threshold,gcm,figure):
         decade_90pct = years[dsorted[1]]
         dates = [decade_90pct['startdate'], decade_90pct['enddate']]
         yrs = [str(i) + '-' +  str(i + 9), str(i) + '-' +  str(i + 9)]
+        dash = ''
         if (gcm == 'ERA'):
             color = '#999999'
-            name = str(decade_90pct['ndays']) + ' Days > ' + str(threshold) + ' ' + unit_lu['temp']['imperial'] + ', Historical '
+            name = str(decade_90pct['ndays']) + ' Days > ' + str(threshold) + unit_lu['temp']['imperial'] + ' '
+            dash = ''
         else: 
-            color = '#669966'
-            name = str(decade_90pct['ndays']) + ' Days > ' + str(threshold) + ' ' + unit_lu['temp']['imperial'] + ', Projected '
+            color = '#008000'
+            name = str(decade_90pct['ndays']) + ' Days > ' + str(threshold) + unit_lu['temp']['imperial'] + ' '
+            dash = 'dash'
 
         figure['data'].append({
             'x': dates,
@@ -202,13 +219,13 @@ def add_time_series(community,threshold,gcm,figure):
             #'text': ['Date of Thaw','Date of Freeze'],
             'name': name,
             'line': {
-                'width': 8,
+                'width': 5,
                 'color': color
             },
             'marker': {
-                'size': 25,
+                'size': 15,
                 'line': {
-                    'width': 5,
+                    'width': 5
                 }
             }
         })
@@ -231,13 +248,14 @@ def temp_chart(community, threshold, gcm):
     add_time_series(community, threshold, 'ERA', figure)
     add_time_series(community, threshold, gcm, figure)
     layout = {
-        'title': 'Growing Season (Start, Length, End), #Days > ' + str(threshold) + ' ' + unit_lu['temp']['imperial'] + ', ' + community + ', Alaska, ' + gcm + ' model',
+        'title': 'Growing Season (Start, Length, End), #Days > ' + str(threshold) + unit_lu['temp']['imperial'] + ', ' + community + ', Alaska, ' + gcm + ' model',
 	'hovermode': 'closest',
         'hoverlabel': {
             'namelength': 20
         },
         'legend': {
-            'text': 'Legend Title'
+            'text': 'Legend Title',
+            'traceorder': 'reversed'
         },
 	'type': 'date',
 	'height': 500,

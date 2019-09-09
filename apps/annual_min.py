@@ -118,6 +118,19 @@ layout = html.Div(
                     children=[
                         html.Div(id='location', className='container', style={ 'visibility': 'hidden' }),
                         form_elements_section,
+                        dcc.Markdown(
+                        """
+### Annual Minimum Temperature (AMT)
+Perennials such as fruit trees and shrubs have to be hardy to survive Alaska winters. Many can’t withstand temperatures below certain thresholds. 
+##### Why we care about AMT
+“Cold hardiness” is just one gauge of whether a crop is suitable to a particular region. Many other factors affect winter survival, such as the insulating value of snow, the moisture content of the ground, the presence or absence of permafrost, and the number of freeze-thaw cycles that occur. Future versions of this tool may include some of these factors.
+##### How this tool calculates AMT
+This graph shows modeled data based on the coldest temperature ever recorded or projected for a chosen location and time period. These temperatures are estimates of record-breaking cold. This differs from the data used for the zone maps, which are based on average coldest temperatures for 30-year periods. Zone maps will show slightly more moderate cold temperatures.
+                        """
+                        ,
+                        className='content is-size-6'
+                        ),
+                        common.infotext(),
                         common.footer()
                     ]
                 )
@@ -146,9 +159,9 @@ def add_traces(community, gcm, figure):
         df_t = df[df['time'].dt.year >= int(key)]
         df_annual = df_t[df_t['time'].dt.year < int(key) + 30]
         if (gcm == 'ERA'):
-            title = str(key) + 's (Hist)'
+            title = str(key) + '-' + str(key + 29) + ' '
         else: 
-            title = str(key) + 's (Projected)'
+            title = str(key) + '-' + str(key + 29) + ' '
         dx = df_annual.set_index('time')
         dxx = dx.to_xarray()
         month_day_str = xr.DataArray(dxx.indexes['time'].strftime('%m-%d'), coords=dxx.coords, name='month_day_str')
