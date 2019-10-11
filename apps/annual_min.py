@@ -52,7 +52,7 @@ unit_lu = {
 gcm_layout = html.Div(
     className='control',
     children=[
-        html.Label('Select Dataset', className='label'),
+        html.Label('Choose Dataset', className='label'),
         dcc.RadioItems(
             labelClassName='radio',
             options=[
@@ -94,7 +94,7 @@ form_elements_section = html.Div(
                         html.Div(
                             className='column',
                             children=[  
-                                html.Label('Select Community', className='label'),
+                                html.Label('Choose Community', className='label'),
                                 community_layout 
                             ]
                         ),
@@ -143,7 +143,7 @@ def add_traces(community, gcm, figure):
     community_name = re.sub('[^A-Za-z0-9]+', '', community) + '_' + gcm
     comm_filename = community_name
 
-    df = pd.read_csv('https://s3-us-west-2.amazonaws.com/community-logs-data/' + comm_filename + '.csv')
+    df = pd.read_csv('https://s3-us-west-2.amazonaws.com/community-logs-data/min/' + comm_filename + '_min.csv')
     imperial_conversion_lu = {'temp':1.8,'precip':0.0393701}
     df['temp'] = df['temp'] * imperial_conversion_lu['temp'] + 32
     df['time'] = pd.to_datetime(df['time'], format='%Y-%m-%d')
@@ -193,7 +193,7 @@ def temp_chart(community, gcm):
     add_traces(community, gcm, figure)
 
     layout = {
-            'title': 'Daily Minimum Temps (' + unit_lu['temp']['imperial'] + '): ' + community + ', Alaska, ' + gcm + ' model',
+            'title': 'Daily Minimum Temps (' + unit_lu['temp']['imperial'] + ')<br>' + community + ', Alaska, Historical and Projected [' + gcm + '] model',
 	'hovermode': 'closest',
         'hoverlabel': {
             'namelength': 20
@@ -206,7 +206,10 @@ def temp_chart(community, gcm):
 	'height': 500,
 	'yaxis': {
 	    'tickformat': 'd',
-            'hoverformat': '.2f'
+            'hoverformat': '.2f',
+            'title': {
+                'text': 'Degrees Fahrenheit'
+            },
 	},
         'xaxis': { 
             'type': 'category',
