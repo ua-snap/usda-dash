@@ -10,9 +10,9 @@ path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
 def menu():
     menu = html.Div([
         #dcc.Link('Home   ', href='/'),
-        dcc.Link('LOGS  | ', href='/logs'),
-        dcc.Link('ANNUAL MIN  | ', href='/annual_min'),
-        dcc.Link('CUMULATIVE GDD    ', href='/cumulative_gdd')
+        dcc.Link('Growing Season  | ', href='/logs'),
+        dcc.Link('Annual Minimum  | ', href='/annual_min'),
+        dcc.Link('Growing Degrees    ', href='/cumulative_gdd')
     ])
     return menu
 
