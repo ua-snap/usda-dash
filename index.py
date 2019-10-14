@@ -6,7 +6,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 
 from application import app,application
-from apps import logs, annual_min, cumulative_gdd
+from apps import common, logs, annual_min, cumulative_gdd
 
 server = flask.Flask(__name__)
 #app.config.requests_pathname_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
@@ -15,21 +15,40 @@ server.secret_key = os.environ.get("secret_key", str(randint(0, 1000000)))
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
-    html.Div(id='page-content')
+    common.header(),
+    dcc.Tabs(id="tabs", value='tab-1', children=[
+        dcc.Tab(label='Growing Season', value='tab-1'),
+        dcc.Tab(label='Annual Minimums', value='tab-2'),
+        dcc.Tab(label='Growing Degree Days', value='tab-3'),
+    ]
+    ),
+    html.Div(id='page-content'),
+    common.footer()
 ])
 app.title = 'USDA Garden Helper'
 
 @app.callback(Output('page-content', 'children'),
-              [Input('url', 'pathname')])
-def display_page(pathname):
+		[
+			Input('url', 'pathname'),
+			Input('tabs', 'value')
+		]
+	)
+def display_page(pathname, tabs):
+    print(tabs)
     if pathname is None:
         return 'Loading...'
+    if tabs == 'tab-1':
+        return logs.layout
+    if tabs == 'tab-2':
+        return annual_min.layout
+    if tabs == 'tab-3':
+        return cumulative_gdd.layout
     if pathname == '/':
          return logs.layout
     elif pathname == '/logs':
          return logs.layout
     elif pathname == '/annual_min':
-         return annual_min.layout
+         return annual_min.layout 
     elif pathname == '/cumulative_gdd':
          return cumulative_gdd.layout
     else:

@@ -109,7 +109,6 @@ form_elements_section = html.Div(
 
 layout = html.Div(
     children=[
-        common.header(),
         html.Div(
             className='section',
             children=[
@@ -130,8 +129,7 @@ This graph shows modeled data based on the coldest temperature ever recorded or 
                         ,
                         className='content is-size-6'
                         ),
-                        common.infotext(),
-                        common.footer()
+			common.infotext(),
                     ]
                 )
             ]

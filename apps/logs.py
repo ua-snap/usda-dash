@@ -141,7 +141,6 @@ form_elements_section = html.Div(
 
 layout = html.Div(
     children=[
-        common.header(),
         html.Div(
             className='section',
             children=[
@@ -163,8 +162,7 @@ If you choose a high temperature threshold, or live in a very cold region, you m
                         ,
                         className='content is-size-6'
                         ),
-                        common.infotext(),
-                        common.footer()
+			common.infotext(),
                     ]
                 )
             ]

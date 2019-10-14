@@ -126,7 +126,6 @@ form_elements_section = html.Div(
 
 layout = html.Div(
     children=[
-        common.header(),
         html.Div(
             className='section',
             children=[
@@ -157,8 +156,7 @@ Example: Corn—with a baseline temperature of 50°F and over 2,000 GDD necessar
                         ,
                         className='content is-size-6'
                         ),
-                        common.infotext(),
-                        common.footer()
+			common.infotext(),
                     ]
                 )
             ]
