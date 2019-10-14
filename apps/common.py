@@ -133,7 +133,6 @@ You may also notice trends—like future growing seasons getting longer—and ra
 Even the most ambitious Alaska growers are not planning their harvests for 2099. However, we include far-future modeled data in these tools because those who are more generally interested in climate change may want to see a longer-term picture. Also, a clearer picture of trends emerges at longer time scales.
 ##### What about other variables?
 Here, you can explore future changes in growing season length, growing degree days, and coldest winter temperatures, all of which are important to crop growth and survival. We know that climate change will also affect rainfall, ground moisture, snow cover, and heat stress. These may be included in future versions of this tool, but for now, we’ve modeled an initial set of variables that growers told us were important. These variables were also relatively easy to work with in terms of time, data, and computing power.
-
                 """
                 ,
                 className='content is-size-6'
