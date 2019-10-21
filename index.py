@@ -6,7 +6,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 
 from application import app,application
-from apps import common, logs, annual_min, cumulative_gdd
+from apps import common, logs, annual_min, cumulative_gdd, hardiness
 
 server = flask.Flask(__name__)
 #app.config.requests_pathname_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
@@ -23,6 +23,7 @@ app.layout = html.Div([
             dcc.Tab(label='Growing Season', value='tab-1'),
             dcc.Tab(label='Annual Minimums', value='tab-2'),
             dcc.Tab(label='Growing Degree Days', value='tab-3'),
+            dcc.Tab(label='Hardiness Zones', value='tab-4'),
         ]
     ),
     html.Div(id='page-content'),
@@ -46,6 +47,8 @@ def display_page(pathname, tabs):
         return annual_min.layout
     if tabs == 'tab-3':
         return cumulative_gdd.layout
+    if tabs == 'tab-4':
+        return hardiness.layout
     if pathname == '/':
          return logs.layout
     elif pathname == '/logs':
