@@ -31,6 +31,7 @@ path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
 communities = gpd.read_file('CommunityList.json')
 names = list(communities.LocationName)
 
+
 community_layout = dcc.Dropdown(
     id='community',
     options=[{'label':name, 'value':name} for name in names],
@@ -189,6 +190,9 @@ def add_traces(community, threshold, gcm, figure):
         df_pre = dx_mean[dx_mean.values > threshold]
         df_pre_thresh = df_pre - threshold
         df_cumsum = df_pre_thresh.cumsum()
+        df_df = df_cumsum.to_dataframe()
+        df_df.at['12-31','temp'] = df_cumsum.max()
+
         if (gcm == 'ERA'):
             linecolor = '#2d2d2d'
         else:
@@ -197,8 +201,8 @@ def add_traces(community, threshold, gcm, figure):
             yearb = 250 - (i - minyear) / (maxyear - minyear) * 210 
             linecolor = 'rgb(' + str(yearr) + ',' + str(yearg) + ',' + str(yearb) + ')'
         figure['data'].append({
-            'x': df_cumsum['month_day_str'].values,
-            'y': df_cumsum.values,
+            'x': df_df.index.values,
+            'y': df_df['temp'],
             'hoverinfo': 'text+y',
             'name': str(i) + '-' + str(i+9),
             'text': str(i) + '-' + str(i+9),

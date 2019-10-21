@@ -16,11 +16,14 @@ server.secret_key = os.environ.get("secret_key", str(randint(0, 1000000)))
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     common.header(),
-    dcc.Tabs(id="tabs", value='tab-1', children=[
-        dcc.Tab(label='Growing Season', value='tab-1'),
-        dcc.Tab(label='Annual Minimums', value='tab-2'),
-        dcc.Tab(label='Growing Degree Days', value='tab-3'),
-    ]
+    dcc.Tabs(
+        id="tabs", 
+        value='tab-1', 
+        children=[
+            dcc.Tab(label='Growing Season', value='tab-1'),
+            dcc.Tab(label='Annual Minimums', value='tab-2'),
+            dcc.Tab(label='Growing Degree Days', value='tab-3'),
+        ]
     ),
     html.Div(id='page-content'),
     common.footer()
