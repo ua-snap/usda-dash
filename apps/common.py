@@ -47,7 +47,7 @@ def header():
                                         className='header--titles',
                                         children=[
                                             html.H1(
-                                                'USDA Garden Helper',
+                                                'Alaska Garden Helper',
                                                 className='title is-2'
                                             ),
                                             html.H2(

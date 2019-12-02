@@ -24,9 +24,6 @@ path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
 
 data_prefix = 'https://s3-us-west-2.amazonaws.com/community-logs-data/'
 
-#app.title = 'SNAP - USDA Garden Helper'
-
-#mapbox_access_token = os.environ['MAPBOX_ACCESS_TOKEN']
 path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
 
 layout = html.Div(
@@ -40,7 +37,7 @@ layout = html.Div(
                         html.Div(id='location', className='container', style={ 'visibility': 'hidden' }),
                         dcc.Markdown(
                         """
-### USDA Hardiness Zones
+### Alaska Hardiness Zones
                         """
                         ,
                         className='content is-size-6'

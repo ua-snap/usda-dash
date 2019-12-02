@@ -29,7 +29,7 @@ app.layout = html.Div([
     html.Div(id='page-content'),
     common.footer()
 ])
-app.title = 'USDA Garden Helper'
+app.title = 'Alaska Garden Helper'
 
 @app.callback(Output('page-content', 'children'),
 		[

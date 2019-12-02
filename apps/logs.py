@@ -39,9 +39,6 @@ def get_max_days_alt(datayear, community, threshold, gcm):
 
     return { 'ndays': max_days, 'startdate': startdate, 'enddate': enddate }
 
-app.title = 'SNAP - USDA Garden Helper'
-
-#mapbox_access_token = os.environ['MAPBOX_ACCESS_TOKEN']
 path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
 communities = gpd.read_file('CommunityList.json')
 names = list(communities.LocationName)

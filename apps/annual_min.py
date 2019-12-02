@@ -27,7 +27,6 @@ data_prefix = 'https://s3-us-west-2.amazonaws.com/community-logs-data/'
 # AWS Elastic Beanstalk looks for application by default,
 # if this variable (application) isn't set you will get a WSGI error.
 
-#mapbox_access_token = os.environ['MAPBOX_ACCESS_TOKEN']
 path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
 communities = gpd.read_file('CommunityList.json')
 names = list(communities.LocationName)
