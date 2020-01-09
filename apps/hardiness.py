@@ -44,7 +44,6 @@ The USDA uses Plant Hardiness Zones as the standard by which growers can determi
 These four maps represent current estimates of hardiness zones in Alaska, plus projections of how these zones may look in three future time periods, based on climate change models.  Looking at future zone maps can help guide long-term planting, and can also provide a starting point for discussions and further research about Alaska’s agricultural future.
  
 [Find more information on USDA Hardiness Zones](https://planthardiness.ars.usda.gov/PHZMWeb/) 
-
                         """
                         ,
                         className='content is-size-6'
