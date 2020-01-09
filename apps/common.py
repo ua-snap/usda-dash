@@ -119,6 +119,7 @@ def infotext():
             children=[
                 dcc.Markdown(
                 """
+
 ### Model Data
 ##### Where do these numbers come from?
 Our models are based on global climate models that have been scaled down to the local level. Global models use information about how much our planet is expected to warm, how that extra heat is likely to be redistributed by the atmosphere and oceans, and how changes such as melting sea ice might cause feedback loops. We downscale these global models to account for finer landscape features like slope and elevation.
