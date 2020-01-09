@@ -146,6 +146,7 @@ Example: If you choose a baseline of 25°F, and if the daily high for a particul
 ##### What GDD means for you
 GDD can help you plan what to plant—and what not to plant—especially when the length of the frost-free season does not provide enough information.
 Example: Corn—with a baseline temperature of 50°F and over 2,000 GDD necessary for maturation—is unlikely to succeed in most parts of Alaska outside of a greenhouse, even though many varieties can mature in only 60-80 days, given enough heat.
+
                         """
                         ,
                         className='content is-size-6'
