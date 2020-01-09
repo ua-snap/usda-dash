@@ -124,6 +124,7 @@ Perennials such as fruit trees and shrubs have to be hardy to survive Alaska win
 “Cold hardiness” is just one gauge of whether a crop is suitable to a particular region. Many other factors affect winter survival, such as the insulating value of snow, the moisture content of the ground, the presence or absence of permafrost, and the number of freeze-thaw cycles that occur. Future versions of this tool may include some of these factors.
 ##### How this tool calculates AMT
 This graph shows modeled data based on the coldest temperature ever recorded or projected for a chosen location and time period. These temperatures are estimates of record-breaking cold. This differs from the data used for the zone maps, which are based on average coldest temperatures for 30-year periods. Zone maps will show slightly more moderate cold temperatures.
+
                         """
                         ,
                         className='content is-size-6'
