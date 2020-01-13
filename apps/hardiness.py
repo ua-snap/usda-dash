@@ -34,6 +34,36 @@ layout = html.Div(
                 html.Div(
                     className='container',
                     children=[
+                        html.Div(
+                            className='columns',
+                            children=[
+                                html.Div(
+                                    children=[
+                                        html.Img(src=path_prefix + 'assets/historical.png'),
+                                    ]
+                                ),
+                                html.Div(
+                                    children=[
+                                        html.Img(src=path_prefix + 'assets/10-39.png'),
+                                    ]
+                                ),
+                            ] 
+                        ),
+                        html.Div(
+                            className='columns',
+                            children=[
+                                html.Div(
+                                    children=[
+                                        html.Img(src=path_prefix + 'assets/40-69.png'),
+                                    ]
+                                ),
+                                html.Div(
+                                    children=[
+                                        html.Img(src=path_prefix + 'assets/70-99.png'),
+                                    ]
+                                ),
+                            ]
+                        ),
                         html.Div(id='location', className='container', style={ 'visibility': 'hidden' }),
                         dcc.Markdown(
                         """

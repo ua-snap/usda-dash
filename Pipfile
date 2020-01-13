@@ -18,6 +18,7 @@ dash-dangerously-set-inner-html = "*"
 visdcc = "*"
 xarray = "*"
 gunicorn = "*"
+werkzeug = "*"
 
 
 [dev-packages]
