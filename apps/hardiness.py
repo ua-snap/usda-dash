@@ -24,8 +24,6 @@ path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
 
 data_prefix = 'https://s3-us-west-2.amazonaws.com/community-logs-data/'
 
-path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
-
 layout = html.Div(
     children=[
         html.Div(
