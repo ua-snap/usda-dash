@@ -8,10 +8,8 @@ from dash.dependencies import Input, Output
 from application import app,application
 
 path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
-import sys
-sys.path.append(path_prefix + 'apps')
 
-import common, logs, annual_min, cumulative_gdd, hardiness
+from apps import common, logs, annual_min, cumulative_gdd, hardiness
 
 server = flask.Flask(__name__)
 #app.config.requests_pathname_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
