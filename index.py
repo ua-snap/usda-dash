@@ -6,6 +6,11 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 
 from application import app,application
+
+path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
+import sys
+sys.path.insert(1, path_prefix)
+
 from apps import common, logs, annual_min, cumulative_gdd, hardiness
 
 server = flask.Flask(__name__)
