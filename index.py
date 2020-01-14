@@ -68,3 +68,4 @@ if __name__ == '__main__':
     debug = os.environ.get("DEBUG", True)
     #app.server.run(debug=debug, port=port)
     app.server.run(debug=debug, port=port, threaded=True)
+    app.logger.setLevel(logging.DEBUG) 
