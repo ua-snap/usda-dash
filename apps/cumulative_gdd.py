@@ -151,6 +151,7 @@ layout = html.Div(
                         html.Div(id='location', className='container', style={ 'visibility': 'hidden' }),
                         form_elements_section,
                         html.Br(),
+                        html.Br(),
                         dcc.Markdown(
                         """
 ### Growing Degree Days (GDD)

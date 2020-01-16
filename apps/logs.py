@@ -165,6 +165,7 @@ layout = html.Div(
                         html.Div(id='location', className='container', style={ 'visibility': 'hidden' }),
                         form_elements_section,
                         html.Br(),
+                        html.Br(),
                         dcc.Markdown(
                             """
 ### Length of Growing Season
