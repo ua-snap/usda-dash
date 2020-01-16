@@ -24,7 +24,7 @@ path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
 
 data_prefix = 'https://s3-us-west-2.amazonaws.com/community-logs-data/'
 
-season_table_data = gpd.read_file('assets/season.csv')
+season_table_data = gpd.read_file('season.csv')
 
 def get_max_days_alt(datayear, community, threshold, gcm):
     df_bools = datayear['temp'] > threshold
