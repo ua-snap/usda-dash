@@ -164,6 +164,7 @@ layout = html.Div(
                     children=[
                         html.Div(id='location', className='container', style={ 'visibility': 'hidden' }),
                         form_elements_section,
+                        html.Br(),
                         dcc.Markdown(
                             """
 ### Length of Growing Season
@@ -178,7 +179,6 @@ If you choose a high temperature threshold, or live in a very cold region, you m
                         className='content is-size-6'
                         ),
                         data_table,
-                        html.Br(),
 			common.infotext(),
                     ]
                 )

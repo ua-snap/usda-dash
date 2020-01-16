@@ -150,6 +150,7 @@ layout = html.Div(
                     children=[
                         html.Div(id='location', className='container', style={ 'visibility': 'hidden' }),
                         form_elements_section,
+                        html.Br(),
                         dcc.Markdown(
                         """
 ### Growing Degree Days (GDD)
@@ -168,7 +169,6 @@ Example: Corn—with a baseline temperature of 50°F and over 2,000 GDD necessar
                         className='content is-size-6'
                         ),
                         data_table,
-                        html.Br(),
 			common.infotext(),
                     ]
                 )
