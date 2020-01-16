@@ -29,7 +29,7 @@ path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
 communities = gpd.read_file('CommunityList.json')
 names = list(communities.LocationName)
 
-gdd_table_data = gpd.read_file(path_prefix + 'assets/gdd.csv')
+gdd_table_data = gpd.read_file('assets/gdd.csv')
 
 community_layout = dcc.Dropdown(
     id='community',
