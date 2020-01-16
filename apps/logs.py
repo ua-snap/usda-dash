@@ -9,6 +9,7 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import dash_dangerously_set_inner_html as ddsih
+import dash_table
 import pandas as pd
 import xarray as xr
 import geopandas as gpd
@@ -22,6 +23,8 @@ from application import app
 path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
 
 data_prefix = 'https://s3-us-west-2.amazonaws.com/community-logs-data/'
+
+season_table_data = gpd.read_file(path_prefix + 'assets/season.csv')
 
 def get_max_days_alt(datayear, community, threshold, gcm):
     df_bools = datayear['temp'] > threshold
@@ -104,6 +107,21 @@ graph_layout = html.Div(
     ]
 )
 
+table_columns = [
+  {"name": "Baseline Temperature Threshold (°F)", "id": "baselinetemp"},
+  {"name": "Species or Variety", "id": "species"},
+  {"name": "Minimum number of days to maturity", "id": "mindaysmaturity"},
+]
+
+# Initial data table setup
+initial = season_table_data
+data_table = dash_table.DataTable(
+    id="season-table",
+    columns=table_columns,
+    style_cell={"whiteSpace": "normal", "textAlign": "left"},
+    data=list(initial.to_dict("index").values()),
+)
+
 form_elements_section = html.Div(
     className='section',
     children=[
@@ -146,6 +164,9 @@ layout = html.Div(
                     children=[
                         html.Div(id='location', className='container', style={ 'visibility': 'hidden' }),
                         form_elements_section,
+                        data_table,
+                        html.Br(),
+                        html.Br(),
                         dcc.Markdown(
                             """
 ### Length of Growing Season

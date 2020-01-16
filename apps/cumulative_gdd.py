@@ -11,6 +11,7 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import dash_dangerously_set_inner_html as ddsih
+import dash_table
 import pandas as pd
 import geopandas as gpd
 import numpy as np
@@ -28,6 +29,7 @@ path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
 communities = gpd.read_file('CommunityList.json')
 names = list(communities.LocationName)
 
+gdd_table_data = gpd.read_file(path_prefix + 'assets/gdd.csv')
 
 community_layout = dcc.Dropdown(
     id='community',
@@ -82,6 +84,22 @@ config = {
     }
 }
 
+table_columns = [
+  {"name": "Baseline Temperature Threshold (°F)", "id": "baselinetemp"},
+  {"name": "Species or Variety", "id": "species"},
+  {"name": "Minimum number of days to maturity", "id": "mindaysmaturity"},
+]
+
+
+# Initial data table setup
+initial = gdd_table_data
+data_table = dash_table.DataTable(
+    id="gdd-table",
+    columns=table_columns,
+    style_cell={"whiteSpace": "normal", "textAlign": "left"},
+    data=list(initial.to_dict("index").values()),
+)
+
 graph_layout = html.Div(
     className='container',
     children=[
@@ -132,10 +150,12 @@ layout = html.Div(
                     children=[
                         html.Div(id='location', className='container', style={ 'visibility': 'hidden' }),
                         form_elements_section,
+                        data_table,
+                        html.Br(), 
+                        html.Br(),
                         dcc.Markdown(
                         """
 ### Growing Degree Days (GDD)
-Definition
 Used to estimate how much heat is available to crops. Heat units are added up daily, throughout the growing season, to create a cumulative total. Plants tend to reach particular growth stages when cumulative GDD reaches the necessary values.  
 ##### About temperature thresholds
 Plants can grow when the temperature is above some minimum value, which varies by species. Many Alaska plants are cold-hardy and can grow on all above-freezing days. For these, GDD can be calculated with a baseline of 32°F. Most crops in other regions have higher baseline temperatures, such as 40°F for barley and oats, or 50°F for corn and tomatoes.
