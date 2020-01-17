@@ -178,6 +178,7 @@ Example: Corn—with a baseline temperature of 50°F and over 2,000 GDD necessar
                         dcc.Markdown(
 			"""
 ##### Sample Crops
+&nbsp;
 			"""
                         ,
                         className='content is-size-6'

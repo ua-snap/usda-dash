@@ -188,10 +188,12 @@ This is because the tool finds the longest consecutive period during which the d
                         ,
                         className='content is-size-6'
                         ),
+			html.Br(),
         		html.A(id="season-header"),
                         dcc.Markdown(
 			"""
 ##### Sample Crops
+&nbsp;
 			"""
                         ,
                         className='content is-size-6'
