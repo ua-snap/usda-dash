@@ -70,7 +70,11 @@ config = {
         'height': 600,
         'width': 1600,
         'scale': 1
-    }
+    },
+    "modeBarButtonsToRemove": [
+      "pan2d",
+      "lasso2d",
+    ]
 }
 
 graph_layout = html.Div(
@@ -202,6 +206,7 @@ def temp_chart(community, gcm):
 	'type': 'date',
 	'height': 500,
 	'yaxis': {
+            'fixedrange': True,
 	    'tickformat': 'd',
             'hoverformat': '.2f',
             'title': {
@@ -209,6 +214,7 @@ def temp_chart(community, gcm):
             },
 	},
         'xaxis': { 
+            'fixedrange': True,
             'type': 'category',
         }
     }
