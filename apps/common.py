@@ -134,9 +134,10 @@ Even the most ambitious Alaska growers are not planning their harvests for 2099.
 Here, you can explore future changes in growing season length, growing degree days, and coldest winter temperatures, all of which are important to crop growth and survival. We know that climate change will also affect rainfall, ground moisture, snow cover, and heat stress. These may be included in future versions of this tool, but for now, we’ve modeled an initial set of variables that growers told us were important. These variables were also relatively easy to work with in terms of time, data, and computing power.
 ##### What about other factors that affect plants?
 Plant growth depends on many things besides climate.  In Alaska, our long summer days and short winter days limit some plants and boost others.  Growth is also strongly impacted by specific location (e.g. hill slopes, higher or lower ground, soil type) and by different agricultural methods, including starting seeds indoors; using greenhouses, tunnels, or frames; planting in containers or raised beds; using mulch or fabric groundcover; irrigating; and covering plants during frost warnings.  
+
 [Find more information about each of these factors](https://www.uaf.edu/ces/agriculture/)
-&nbsp
-Read more about an important Alaska crop, [commercial peonies](https://www.snap.uaf.edu/sites/default/files/files/Peony%20report.pdf)
+
+You can also read more about an important Alaska crop, [commercial peonies](https://www.snap.uaf.edu/sites/default/files/files/Peony%20report.pdf)
                 """
                 ,
                 className='content is-size-6'
