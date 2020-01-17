@@ -174,6 +174,7 @@ Example: Corn—with a baseline temperature of 50°F and over 2,000 GDD necessar
                         ,
                         className='content is-size-6'
                         ),
+			html.Br(),
         		html.A(id="gdd-header"),
                         dcc.Markdown(
 			"""
