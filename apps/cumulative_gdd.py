@@ -162,7 +162,7 @@ layout = html.Div(
 Used to estimate how much heat is available to crops. Heat units are added up daily, throughout the growing season, to create a cumulative total. Plants tend to reach particular growth stages when cumulative GDD reaches the necessary values.  
 ##### About temperature thresholds
 Plants can grow when the temperature is above some minimum value, which varies by species. Many Alaska plants are cold-hardy and can grow on all above-freezing days. For these, GDD can be calculated with a baseline of 32°F. Most crops in other regions have higher baseline temperatures, such as 40°F for barley and oats, or 50°F for corn and tomatoes.
-Choose a threshold based on what crop you plan to grow. For more information, click [here](#gdd-table)
+Choose a threshold based on what crop you plan to grow. For more information, click [here](#gdd-header)
 ##### How this tool measures GDD
 We average daily high and low temperatures (based on our climate models) and subtracts the baseline value (which you choose) from that average.
 Example: If you choose a baseline of 25°F, and if the daily high for a particular day was 72°F and the low was 45°F, the GDD value for that day would be (72°F + 45°F)/2 – 25°F = 33°F. Because heat stress is rare in Alaska, we did not include upper thresholds in our calculations.
@@ -174,8 +174,14 @@ Example: Corn—with a baseline temperature of 50°F and over 2,000 GDD necessar
                         ,
                         className='content is-size-6'
                         ),
-                        html.Br(),
-                        html.Br(),
+        		html.A(id="gdd-header"),
+                        dcc.Markdown(
+			"""
+##### Sample Crops
+			"""
+                        ,
+                        className='content is-size-6'
+                        ),
                         data_table,
 			common.infotext(),
                     ]

@@ -174,9 +174,9 @@ layout = html.Div(
                             """
 ### Length of Growing Season
 ##### About growing season length
-Time between the last cold day in spring (based on the temperature threshold you select: 32°F, 40°F, or 50°F) and the first cold day in fall. Here, you can see projections of start/end dates and the number of days in between. This can help you decide if a crop is worth planting in your area. ”Days to maturity” information is often provided on seed packets. But keep in mind that cool temperatures can slow growth, so also check our “Growing Degree Days” tool.
+Longest recorded or projected stretch of time between the last cold day (based on the temperature threshold you select: 32°F, 40°F, or 50°F) and the first cold day thereafter. Here, you can see projections of start/end dates and the number of days in between. This can help you decide if a crop is worth planting in your area. ”Days to maturity” information is often provided on seed packets. But keep in mind that cool temperatures can slow growth, so also check our “Growing Degree Days” tool.
 ##### How to choose a temperature threshold
-Planting guides refer to “last frost” in spring and “first frost” in fall, implying minimum daily temperatures of 32°F. We offer more thresholds to provide flexibility in considering cold-hardy crops that may be harvested only when a hard frost is reached (28°F), or more delicate crops that cannot grow when temperatures are below a higher threshold. Such plants might be kept in a greenhouse until a later planting date, and harvested earlier. Learn more about specific crops [here](#season-table)
+Planting guides refer to “last frost” in spring and “first frost” in fall, implying minimum daily temperatures of 32°F. We offer more thresholds to provide flexibility in considering cold-hardy crops that may be harvested only when a hard frost is reached (28°F), or more delicate crops that cannot grow when temperatures are below a higher threshold. Such plants might be kept in a greenhouse until a later planting date, and harvested earlier. Learn more about specific crops [here](#season-header)
 ##### Why does the growing season seem so irregular?
 If you choose a high temperature threshold, or live in a very cold region, you may see results that look short and uneven. This is because the tool finds the longest consecutive period during which the daily minimum temperature never drops below the selected temperature. If just one day is below that value, the “season” ends at that point. Be sure to choose thresholds that make sense for your area.
 ##### Why does the growing season seem so irregular?
@@ -188,8 +188,14 @@ This is because the tool finds the longest consecutive period during which the d
                         ,
                         className='content is-size-6'
                         ),
-                        html.Br(),
-                        html.Br(),
+        		html.A(id="season-header"),
+                        dcc.Markdown(
+			"""
+##### Sample Crops
+			"""
+                        ,
+                        className='content is-size-6'
+                        ),
                         data_table,
 			common.infotext(),
                     ]
