@@ -32,8 +32,10 @@ layout = html.Div(
                 html.Div(
                     className='container',
                     children=[
-			dcc.Markdown("""
+			dcc.Markdown(
+			"""
 ### Alaska Hardiness Maps
+&nbsp;
 			""",
                         className='content is-size-6'
 			),
