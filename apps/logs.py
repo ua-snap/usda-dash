@@ -175,6 +175,10 @@ Time between the last cold day in spring (based on the temperature threshold you
 Planting guides refer to “last frost” in spring and “first frost” in fall, implying minimum daily temperatures of 32°F. We offer more thresholds to provide flexibility in considering cold-hardy crops that may be harvested only when a hard frost is reached (28°F), or more delicate crops that cannot grow when temperatures are below a higher threshold. Such plants might be kept in a greenhouse until a later planting date, and harvested earlier. Learn more about specific crops here link
 ##### Why does the growing season seem so irregular?
 If you choose a high temperature threshold, or live in a very cold region, you may see results that look short and uneven. This is because the tool finds the longest consecutive period during which the daily minimum temperature never drops below the selected temperature. If just one day is below that value, the “season” ends at that point. Be sure to choose thresholds that make sense for your area.
+##### Why does the growing season seem so irregular?
+If you choose a high temperature threshold, or live in a very cold region, you may see results that look short and uneven, as you can see in this example showing days above 50F in Nome.
+![Nome Example Plot](assets/nome.svg)
+This is because the tool finds the longest consecutive period during which the daily minimum temperature never drops below the selected temperature. If just one day is below that value, the “season” ends at that point. Be sure to choose thresholds that make sense for your area.
                             """
                         ,
                         className='content is-size-6'
