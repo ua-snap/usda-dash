@@ -23,5 +23,7 @@ This app can be run locally with the following commands:
 
 ### Note
 It may be necessary to comment out the following line in index.py for local use:
+
 `app.config.requests_pathname_prefix = os.environ['REQUESTS_PATHNAME_PREFIX'`
+
 Be sure to uncomment this line before deploying to AWS or the deployed app may not function.
