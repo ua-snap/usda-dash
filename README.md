@@ -13,10 +13,12 @@ To install the app, use the following command:
 
 If the above does not work, you may need to explicitly install a version of python >= 3.6:
 
-`pipenv install --python 3.7
+`pipenv install --python 3.7`
 
 This app can be run locally with the following commands:
+
 `export REQUESTS_PATHNAME_PREFIX=''`
+
 `pipenv run python index.py`
 
 ### Note
