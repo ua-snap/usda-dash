@@ -73,6 +73,7 @@ layout = html.Div(
 			"""
 ##### Download Maps
 [High Resolution Alaska Hardiness Maps](https://www.sciencebase.gov/catalog/item/5be4a2fbe4b0b3fc5cf8bd4a)
+
 &nbsp;
 			"""
 			, 
