@@ -3,9 +3,9 @@
 This application highlights a number of features about changes growing seasons under projected climate data, showing:
 
 * Length of Growing Season above N degrees
-* Date of Thaw
-* Date of Freeze
-* Alaska Hardiness Zones
+* Minimum Annual Temperatures by 30 year period
+* Cumulative Growing Degrees
+* Alaska Hardiness Zone Maps
 
 To install the app, use the following command:
 
