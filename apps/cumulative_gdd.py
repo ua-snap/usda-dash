@@ -91,7 +91,7 @@ config = {
 table_columns = [
   {"name": "Baseline Temperature Threshold (°F)", "id": "baselinetemp"},
   {"name": "Species or Variety", "id": "species"},
-  {"name": "Minimum number of days to maturity", "id": "mindaysmaturity"},
+  {"name": "Minimum cumulative growing degree days to maturity", "id": "mindaysmaturity"},
 ]
 
 
