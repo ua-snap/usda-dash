@@ -288,6 +288,7 @@ def temp_chart(community, threshold, gcm):
         'hoverlabel': {
             'namelength': 20
         },
+	'showlegend': False,
         'legend': {
             'text': 'Legend Title',
             'traceorder': 'reversed'
