@@ -181,7 +181,7 @@ Planting guides refer to “last frost” in spring and “first frost” in fal
 If you choose a high temperature threshold, or live in a very cold region, you may see results that look short and uneven. This is because the tool finds the longest consecutive period during which the daily minimum temperature never drops below the selected temperature. If just one day is below that value, the “season” ends at that point. Be sure to choose thresholds that make sense for your area.
 ##### Why does the growing season seem so irregular?
 If you choose a high temperature threshold, or live in a very cold region, you may see results that look short and uneven, as you can see in this example showing days above 50F in Nome.
-![Nome Example Plot](gardentool/assets/nome.svg)
+![Nome Example Plot](gardenhelper/assets/nome.svg)
 This is because the tool finds the longest consecutive period during which the daily minimum temperature never drops below the selected temperature. If just one day is below that value, the “season” ends at that point. Be sure to choose thresholds that make sense for your area.
 &nbsp;
                             """
