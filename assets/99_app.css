@@ -81,8 +81,9 @@ tspan.line:nth-child(1) {
 }
 
 .footer a img {
-	height: 5em;
+	height: 4em;
 	margin: 1em 1.5em;
+	vertical-align: baseline;
 }
 
 ._dash-undo-redo {
