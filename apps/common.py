@@ -76,7 +76,10 @@ def footer():
             dcc.Markdown(
                 """
 Created by the Scenarios Network for Alaska and Arctic Planning, a climate change research group at the International Arctic Research Center at the University of Alaska Fairbanks (UAF). Many Alaska farmers and gardeners provided input, including experts from the UAF Georgeson Botanical Gardens, Spinach Creek Farm, Calypso Farm, and the Alaska Peony Growers Association.
-Funding: USDA via the Alaska Climate Adaptation Science Center. If you have questions, please 
+
+Developed in collaboration with the USDA Northwest Climate Hub with funding provided by the Alaska Climate Adaptation Science Center.
+
+If you have questions, please
 [Contact Us](https://www.snap.uaf.edu/content/contact)
                 """,
                 className='content is-size-6'
@@ -100,6 +103,16 @@ Funding: USDA via the Alaska Climate Adaptation Science Center. If you have ques
                         children=[
                             html.Img(
                                 src=path_prefix + 'assets/UAF.svg'
+                            )
+                        ]
+                    ),
+                    html.A(
+                        href='https://casc.alaska.edu',
+                        target='_blank',
+                        className='level-item',
+                        children=[
+                            html.Img(
+                                src=path_prefix + 'assets/AKCASC_color.svg'
                             )
                         ]
                     )
