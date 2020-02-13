@@ -39,6 +39,8 @@ def get_max_days_alt(datayear, community, threshold, gcm):
     startdate = datayear.loc[startdateid].time.strftime('%m-%d')
     enddate = (datayear.loc[startdateid].time + pd.DateOffset(days=int(logs.iloc[0]))).strftime('%m-%d')
 
+    if(enddate == '01-01'):
+        enddate = '12-31'
 
     return { 'ndays': max_days, 'startdate': startdate, 'enddate': enddate }
 
