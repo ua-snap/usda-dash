@@ -5,74 +5,80 @@ import xarray as xr
 import dash_core_components as dcc
 import dash_html_components as html
 
-path_prefix = os.environ['REQUESTS_PATHNAME_PREFIX']
+path_prefix = os.environ["REQUESTS_PATHNAME_PREFIX"]
+
 
 def menu():
-    menu = html.Div([
-        #dcc.Link('Home   ', href='/'),
-        #dcc.Link('Growing Season  | ', href='/logs'),
-        #dcc.Link('Annual Minimum  | ', href='/annual_min'),
-        #dcc.Link('Growing Degrees    ', href='/cumulative_gdd')
-    ])
+    menu = html.Div(
+        [
+            # dcc.Link('Home   ', href='/'),
+            # dcc.Link('Growing Season  | ', href='/logs'),
+            # dcc.Link('Annual Minimum  | ', href='/annual_min'),
+            # dcc.Link('Growing Degrees    ', href='/cumulative_gdd')
+        ]
+    )
     return menu
+
 
 def header():
     header = html.Div(
-        className='header',
+        className="header",
         children=[
             html.Div(
-                className='container',
+                className="container",
                 children=[
                     html.Div(
-                        className='section',
+                        className="section",
                         children=[
                             html.Div(
-                                className='columns',
+                                className="columns",
                                 children=[
                                     html.Div(
-                                        className='header--logo',
+                                        className="header--logo",
                                         children=[
                                             html.A(
-                                                className='header--snap-link',
-                                                href='https://snap.uaf.edu',
-                                                rel='external',
-                                                target='_blank',
+                                                className="header--snap-link",
+                                                href="https://snap.uaf.edu",
+                                                rel="external",
+                                                target="_blank",
                                                 children=[
-                                                    html.Img(src=path_prefix + 'assets/SNAP_acronym_color_square.svg')
-                                                ]
+                                                    html.Img(
+                                                        src=path_prefix
+                                                        + "assets/SNAP_acronym_color_square.svg"
+                                                    )
+                                                ],
                                             )
-                                        ]
+                                        ],
                                     ),
                                     html.Div(
-                                        className='header--titles',
+                                        className="header--titles",
                                         children=[
                                             html.H1(
-                                                'Alaska Garden Helper',
-                                                className='title is-2'
+                                                "Alaska Garden Helper",
+                                                className="title is-2",
                                             ),
                                             html.H2(
-                                                'Explore local growing conditions under a changing climate.',
-                                                className='subtitle is-4'
-                                            )
-                                        ]
+                                                "Explore local growing conditions under a changing climate.",
+                                                className="subtitle is-4",
+                                            ),
+                                        ],
                                     ),
-                                    menu()
-                                ]
+                                    menu(),
+                                ],
                             )
-                        ]
+                        ],
                     )
-                ]
+                ],
             )
-        ]
+        ],
     )
     return header
 
 
 def footer():
     footer = html.Footer(
-        className='footer has-text-centered',
+        className="footer has-text-centered",
         children=[
-
             dcc.Markdown(
                 """
 Created by the Scenarios Network for Alaska and Arctic Planning, a climate change research group at the International Arctic Research Center at the University of Alaska Fairbanks (UAF). Many Alaska farmers and gardeners provided input, including experts from the UAF Georgeson Botanical Gardens, Spinach Creek Farm, Calypso Farm, and the Alaska Peony Growers Association.
@@ -82,55 +88,47 @@ Developed in collaboration with the USDA Northwest Climate Hub with funding prov
 If you have questions, please
 [Contact Us](https://www.snap.uaf.edu/content/contact)
                 """,
-                className='content is-size-6'
+                className="content is-size-6",
             ),
             html.Div(
                 children=[
                     html.A(
-                        href='https://snap.uaf.edu',
-                        target='_blank',
-                        className='level-item',
-                        children=[
-                            html.Img(
-                                src=path_prefix + 'assets/SNAP.svg'
-                            )
-                        ]
+                        href="https://snap.uaf.edu",
+                        target="_blank",
+                        className="level-item",
+                        children=[html.Img(src=path_prefix + "assets/SNAP.svg")],
                     ),
                     html.A(
-                        href='https://uaf.edu/uaf/',
-                        target='_blank',
-                        className='level-item',
-                        children=[
-                            html.Img(
-                                src=path_prefix + 'assets/UAF.svg'
-                            )
-                        ]
+                        href="https://uaf.edu/uaf/",
+                        target="_blank",
+                        className="level-item",
+                        children=[html.Img(src=path_prefix + "assets/UAF.svg")],
                     ),
                     html.A(
-                        href='https://casc.alaska.edu',
-                        target='_blank',
-                        className='level-item',
+                        href="https://casc.alaska.edu",
+                        target="_blank",
+                        className="level-item",
                         children=[
-                            html.Img(
-                                src=path_prefix + 'assets/AKCASC_color.svg'
-                            )
-                        ]
-                    )
+                            html.Img(src=path_prefix + "assets/AKCASC_color.svg")
+                        ],
+                    ),
                 ]
             ),
             dcc.Markdown(
                 """
 UA is an AA/EO employer and educational institution and prohibits illegal discrimination against any individual. [Statement of Nondiscrimination](https://www.alaska.edu/nondiscrimination/)
                 """,
-                className='content is-size-6'
+                className="content is-size-6",
             ),
-        ]
+        ],
     )
     return footer
+
+
 def infotext():
     infotext = html.Div(
-            children=[
-                dcc.Markdown(
+        children=[
+            dcc.Markdown(
                 """
 &nbsp;  
 ### Model Data
@@ -151,11 +149,9 @@ Plant growth depends on many things besides climate.  In Alaska, our long summer
 [Find more information about each of these factors](https://www.uaf.edu/ces/agriculture/)
 
 You can also read more about an important Alaska crop, [commercial peonies](https://www.snap.uaf.edu/sites/default/files/files/Peony%20report.pdf)
-                """
-                ,
-                className='content is-size-6'
-                )
-            ]
+                """,
+                className="content is-size-6",
+            )
+        ]
     )
     return infotext
-
