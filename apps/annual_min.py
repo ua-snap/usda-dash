@@ -110,7 +110,7 @@ layout = html.Div(
                         dcc.Markdown(
                             """
 ### Annual Minimum Temperature (AMT)
-Perennials such as fruit trees and shrubs have to be hardy to survive Alaska winters. Many can’t withstand temperatures below certain thresholds. 
+Perennials such as fruit trees and shrubs have to be hardy to survive Alaska winters. Many can’t withstand temperatures below certain thresholds.
 ##### Why we care about AMT
 “Cold hardiness” is just one gauge of whether a crop is suitable to a particular region. Many other factors affect winter survival, such as the insulating value of snow, the moisture content of the ground, the presence or absence of permafrost, and the number of freeze-thaw cycles that occur. Future versions of this tool may include some of these factors.
 ##### How this tool calculates AMT
