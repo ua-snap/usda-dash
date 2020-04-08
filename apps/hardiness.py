@@ -92,8 +92,8 @@ layout = html.Div(
 The USDA uses Plant Hardiness Zones as the standard by which growers can determine which plants are likely to thrive at a given location. Many seed manufacturers reference these zones.  Hardiness maps are based on the average annual minimum winter temperature.  These zones are only a rough guide.  Because they are based on winter temperatures, they are of greatest importance for perennials such as fruit trees or peonies.  It may make more sense to choose summer crops (annuals) based on our Growing Degree Day or Growing Season tools. Also, variations based on very fine scale differences in slope or elevation are too small to show up on these maps.
 ##### Future Hardiness Projections
 These four maps represent current estimates of hardiness zones in Alaska, plus projections of how these zones may look in three future time periods, based on climate change models.  Looking at future zone maps can help guide long-term planting, and can also provide a starting point for discussions and further research about Alaska’s agricultural future.
- 
-[Find more information on USDA Hardiness Zones](https://planthardiness.ars.usda.gov/PHZMWeb/) 
+
+[Find more information on USDA Hardiness Zones](https://planthardiness.ars.usda.gov/PHZMWeb/)
                         """,
                             className="content is-size-6",
                         ),

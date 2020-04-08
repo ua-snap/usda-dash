@@ -152,7 +152,7 @@ layout = html.Div(
                         dcc.Markdown(
                             """
 ### Growing Degree Days (GDD)
-Used to estimate how much heat is available to crops. Heat units are added up daily, throughout the growing season, to create a cumulative total. Plants tend to reach particular growth stages when cumulative GDD reaches the necessary values.  
+Used to estimate how much heat is available to crops. Heat units are added up daily, throughout the growing season, to create a cumulative total. Plants tend to reach particular growth stages when cumulative GDD reaches the necessary values.
 ##### About temperature thresholds
 Plants can grow when the temperature is above some minimum value, which varies by species. Many Alaska plants are cold-hardy and can grow on all above-freezing days. For these, GDD can be calculated with a baseline of 32°F. Most crops in other regions have higher baseline temperatures, such as 40°F for barley and oats, or 50°F for corn and tomatoes.
 Choose a threshold based on what crop you plan to grow. For more information, click [here](#gdd-header)

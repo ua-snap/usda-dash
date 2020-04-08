@@ -130,7 +130,7 @@ def infotext():
         children=[
             dcc.Markdown(
                 """
-&nbsp;  
+&nbsp;
 ### Model Data
 ##### Where do these numbers come from?
 Our models are based on global climate models that have been selected for their strong performance in the far north, and scaled down to the local level. Global models use information about how much our planet is expected to warm, how that extra heat is likely to be redistributed by the atmosphere and oceans, and how changes such as melting sea ice might cause feedback loops. We downscale these global models to account for finer landscape features like slope and elevation.
@@ -144,7 +144,7 @@ Even the most ambitious Alaska growers are not planning their harvests for 2099.
 ##### What about other climate variables?
 Here, you can explore future changes in growing season length, growing degree days, and coldest winter temperatures, all of which are important to crop growth and survival. We know that climate change will also affect rainfall, ground moisture, snow cover, and heat stress. These may be included in future versions of this tool, but for now, we’ve modeled an initial set of variables that growers told us were important. These variables were also relatively easy to work with in terms of time, data, and computing power.
 ##### What about other factors that affect plants?
-Plant growth depends on many things besides climate.  In Alaska, our long summer days and short winter days limit some plants and boost others.  Growth is also strongly impacted by specific location (e.g. hill slopes, higher or lower ground, soil type) and by different agricultural methods, including starting seeds indoors; using greenhouses, tunnels, or frames; planting in containers or raised beds; using mulch or fabric groundcover; irrigating; and covering plants during frost warnings.  
+Plant growth depends on many things besides climate.  In Alaska, our long summer days and short winter days limit some plants and boost others.  Growth is also strongly impacted by specific location (e.g. hill slopes, higher or lower ground, soil type) and by different agricultural methods, including starting seeds indoors; using greenhouses, tunnels, or frames; planting in containers or raised beds; using mulch or fabric groundcover; irrigating; and covering plants during frost warnings.
 
 [Find more information about each of these factors](https://www.uaf.edu/ces/agriculture/)
 
