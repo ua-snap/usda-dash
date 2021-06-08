@@ -7,14 +7,14 @@ from dash.dependencies import Input, Output
 
 from application import app, application
 
-path_prefix = os.environ["REQUESTS_PATHNAME_PREFIX"]
+# path_prefix = os.environ["REQUESTS_PATHNAME_PREFIX"]
 
 from apps import common, logs, annual_min, cumulative_gdd, hardiness
 
 server = flask.Flask(__name__)
-app.config.requests_pathname_prefix = os.environ["REQUESTS_PATHNAME_PREFIX"]
+# app.config.requests_pathname_prefix = os.environ["REQUESTS_PATHNAME_PREFIX"]
 # app = dash.Dash(external_scripts = external_scripts, server=server, requests_pathname_prefix=os.environ['REQUESTS_PATHNAME_PREFIX'])
-server.secret_key = os.environ.get("secret_key", str(randint(0, 1000000)))
+# server.secret_key = os.environ.get("secret_key", str(randint(0, 1000000)))
 
 app.layout = html.Div(
     [

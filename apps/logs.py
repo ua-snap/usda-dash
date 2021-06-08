@@ -11,9 +11,8 @@ import dash_html_components as html
 import dash_dangerously_set_inner_html as ddsih
 import dash_table
 import pandas as pd
-import xarray as xr
 import geopandas as gpd
-import numpy as np
+# import numpy as np
 import urllib, json
 import re
 from dash.dependencies import Input, Output, State
