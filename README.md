@@ -13,17 +13,8 @@ To install the app, use the following command:
 
 If the above does not work, you may need to explicitly install a version of python >= 3.6:
 
-`pipenv install --python 3.7`
+`pipenv install --python 3.7` ** BRUCE TBD WHY &&
 
 This app can be run locally with the following commands:
 
-`export REQUESTS_PATHNAME_PREFIX=''`
-
-`pipenv run python index.py`
-
-### Note
-It may be necessary to comment out the following line in index.py for local use:
-
-`app.config.requests_pathname_prefix = os.environ['REQUESTS_PATHNAME_PREFIX'`
-
-Be sure to uncomment this line before deploying to AWS or the deployed app may not function.
+`pipenv run python application.py`
