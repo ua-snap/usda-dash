@@ -1,91 +1,51 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin-ext');
-@import url('https://fonts.googleapis.com/css?family=Cardo:400,400i,700&subset=latin-ext');
-
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Sigmar+One&display=swap');
 html, body {
-	font-family: 'Cardo';
+	font-family: 'Lato', serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Open Sans';
+	font-family: 'Lato', sans-serif;
 }
 
-label.label:not(:last-child) {
-	margin: 1.5em 0 1ex;
+.bannerstrip {
+	background-color:  white;
+	color: #000;
+	text-transform: uppercase;
+	text-align:  center;
+	letter-spacing:  3px;
+	font-size:  9pt;
+	padding:  9px 0 7px;
+	border-bottom:  1px solid #ddd;
 }
 
-.section--form {
-	padding-top: 0;
-	margin-bottom: 0;
+.camera-icon span {
+    display: inline-block;
+    position: relative;
+    top: 0.25rem;
+    padding: 0 3px;
 }
-.section.graph {
-	padding-top: 0;
-	margin-top: -3rem;
-}
-
-/* We want vertical Checklists always. */
-.control label.checkbox {
-	display: block;
+.camera-icon span path {
+    fill: #ccc;
 }
 
-.header {
-	background-color: rgba(239, 241, 226, 1.00);
-	padding: 0;
+.narrative {
+	max-width: 50rem;
+	margin:  0 auto;
 }
 
-.header--section {
-	margin-top: -1rem;
+footer {
+	box-shadow: inset 0 7px 9px -7px rgba(0,0,0,0.4);
 }
 
-.header--logo {
-	float: left;
-	padding-right: 2rem;
+footer .logos.column {
+	text-align: right;
+	padding-top: 1.25rem;
 }
-
-.header--snap-link img {
-	height: 5.4em;
-}
-
-.form label, .form input {
-	font-size: 130%;
-}
-
-label.checkbox input, label.radio input {
-	position: relative;
-	bottom: .1ex;
-	margin-right: .5ex;
-}
-
-tspan.line:nth-child(1) {
-	font-weight: 900;
-	font-size: 18pt;
-}
-
-.date-range-selector .rc-slider {
-	margin: 2rem 1rem;
-}
-
-.rc-slider-handle {
-	width: 25px;
-	height: 25px;
-	margin-left: -15px;
-	margin-top: -11px;
-}
-
-.footer p {
-	width: 50%;
-	margin: 1em auto;
-}
-
-.footer a {
+footer .logos.column a img {
+	max-width: 90%;
 	display: inline-block;
+	margin-bottom: 1rem;
 }
-
-.footer a img {
-	height: 4em;
-	margin: 1em 1.5em;
-	vertical-align: baseline;
-}
-
-._dash-undo-redo {
-	display: none;
+footer p {
+	width: 90%;
 }
