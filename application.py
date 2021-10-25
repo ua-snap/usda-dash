@@ -3,7 +3,8 @@ from random import randint
 import flask
 import dash
 
-path_prefix = os.environ["DASH_REQUESTS_PATHNAME_PREFIX"]
+path_prefix = os.environ["DASH_REQUESTS_PATHNAME_PREFIX"] or "/"
+
 app = dash.Dash(__name__, requests_pathname_prefix=path_prefix)
 # app = dash.Dash(__name__,server=server,)
 
