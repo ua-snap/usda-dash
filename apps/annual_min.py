@@ -8,8 +8,7 @@ import json
 import plotly.graph_objs as go
 import xarray as xr
 import dash
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc, html
 import dash_dangerously_set_inner_html as ddsih
 import pandas as pd
 import geopandas as gpd
@@ -20,14 +19,13 @@ from dash.dependencies import Input, Output, State
 from apps import common
 from application import app
 
-path_prefix = os.environ["REQUESTS_PATHNAME_PREFIX"]
+path_prefix = os.environ["DASH_REQUESTS_PATHNAME_PREFIX"]
 
 data_prefix = "https://s3-us-west-2.amazonaws.com/community-logs-data/"
 
 # AWS Elastic Beanstalk looks for application by default,
 # if this variable (application) isn't set you will get a WSGI error.
 
-path_prefix = os.environ["REQUESTS_PATHNAME_PREFIX"]
 communities = gpd.read_file("CommunityList.json")
 names = list(communities.LocationName)
 

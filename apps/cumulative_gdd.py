@@ -8,10 +8,8 @@ import json
 import plotly.graph_objs as go
 import xarray as xr
 import dash
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc, html, dash_table
 import dash_dangerously_set_inner_html as ddsih
-import dash_table
 import pandas as pd
 import geopandas as gpd
 import numpy as np
@@ -21,11 +19,10 @@ from dash.dependencies import Input, Output, State
 from apps import common
 from application import app
 
-path_prefix = os.environ["REQUESTS_PATHNAME_PREFIX"]
+path_prefix = os.environ["DASH_REQUESTS_PATHNAME_PREFIX"]
 
 data_prefix = "https://s3-us-west-2.amazonaws.com/community-logs-data/"
 
-path_prefix = os.environ["REQUESTS_PATHNAME_PREFIX"]
 communities = gpd.read_file("CommunityList.json")
 names = list(communities.LocationName)
 

@@ -2,10 +2,9 @@ import os
 import re
 import pandas as pd
 import xarray as xr
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc, html
 
-path_prefix = os.environ["REQUESTS_PATHNAME_PREFIX"]
+path_prefix = os.environ["DASH_REQUESTS_PATHNAME_PREFIX"]
 
 
 def menu():
