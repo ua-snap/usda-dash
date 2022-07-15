@@ -31,21 +31,26 @@ def get_max_days_alt(datayear, community, threshold, gcm):
     df_bools = datayear["temp"] > threshold
     max_days = 0
     boolvals = (~df_bools).cumsum()[df_bools]
-    logs = boolvals.value_counts()
-    max_days = logs.max()
-    check_eq = boolvals[boolvals == logs.index[0]]
-    clipbools = check_eq.clip(logs.index[0], logs.index[0])
+    
+    if boolvals.empty == False:
+        logs = boolvals.value_counts()
+        max_days = logs.max()
+        check_eq = boolvals[boolvals == logs.index[0]]
+        clipbools = check_eq.clip(logs.index[0], logs.index[0])
 
-    startdateid = check_eq.index[0]
-    startdate = datayear.loc[startdateid].time.strftime("%m-%d")
-    enddate = (
-        datayear.loc[startdateid].time + pd.DateOffset(days=int(logs.iloc[0]))
-    ).strftime("%m-%d")
+        startdateid = check_eq.index[0]
+        startdate = datayear.loc[startdateid].time.strftime("%m-%d")
+        enddate = (
+            datayear.loc[startdateid].time + pd.DateOffset(days=int(logs.iloc[0]))
+        ).strftime("%m-%d")
 
-    if enddate == "01-01":
-        enddate = "12-31"
+        if enddate == "01-01":
+            enddate = "12-31"
 
-    return {"ndays": max_days, "startdate": startdate, "enddate": enddate}
+        return {"ndays": max_days, "startdate": startdate, "enddate": enddate}
+
+    else:
+        return {"ndays": 0, "startdate": '05-01', "enddate": "05-01" }
 
 
 path_prefix = os.environ["REQUESTS_PATHNAME_PREFIX"]
@@ -232,10 +237,17 @@ def add_time_series(community, threshold, gcm, figure):
         for j in range(0, 10):
             decade_dict[i + j] = years[i + j]
         dsorted = sorted(decade_dict, key=lambda key: decade_dict[key]["ndays"])
+        from pprint import pprint
+        print("dsorted")
+        pprint(dsorted[1])
         decade_90pct = years[dsorted[1]]
+
         dates = [decade_90pct["startdate"], decade_90pct["enddate"]]
         yrs = [str(i) + "-" + str(i + 9), str(i) + "-" + str(i + 9)]
         dash = ""
+
+
+
         if gcm == "ERA":
             color = "#999999"
             name = (
@@ -257,14 +269,22 @@ def add_time_series(community, threshold, gcm, figure):
             )
             dash = "dash"
 
+
+        line = {"width": 5, "color": color}
+        marker = {"size": 15, "line": {"width": 5}}
+
+        if decade_90pct["ndays"] == 0:
+            line = {"width": 1, color: "#ffffff"}
+            marker = {"size": 1, color: "#ffffff"}
+
         figure["data"].append(
             {
                 "x": dates,
                 "y": yrs,
                 #'text': ['Date of Thaw','Date of Freeze'],
                 "name": name,
-                "line": {"width": 5, "color": color},
-                "marker": {"size": 15, "line": {"width": 5}},
+                "line": line,
+                "marker": marker,
             }
         )
 
