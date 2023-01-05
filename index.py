@@ -12,6 +12,31 @@ from apps import common, logs, annual_min, cumulative_gdd, hardiness
 
 server = flask.Flask(__name__)
 
+app.index_string = f"""
+<!DOCTYPE html>
+<html>
+    <head>
+        <script async defer
+          src="http://umami.snap.uaf.edu/umami.js"
+          data-website-id="f942d158-bdc3-4022-9f8e-eeee900b6dad"
+          data-do-not-track="true"
+        ></script>
+        {{%metas%}}
+        <title>{{%title%}}</title>
+        {{%favicon%}}
+        {{%css%}}
+    </head>
+    <body>
+        {{%app_entry%}}
+        <footer>
+            {{%config%}}
+            {{%scripts%}}
+            {{%renderer%}}
+        </footer>
+    </body>
+</html>
+"""
+
 app.layout = html.Div(
     [
         dcc.Location(id="url", refresh=False),
