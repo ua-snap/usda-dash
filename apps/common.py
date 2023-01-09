@@ -147,7 +147,11 @@ Plant growth depends on many things besides climate.  In Alaska, our long summer
 
 [Find more information about each of these factors](https://www.uaf.edu/ces/agriculture/)
 
-You can also read more about an important Alaska crop, [commercial peonies](https://www.snap.uaf.edu/sites/default/files/files/Peony%20report.pdf)
+You can also read more about an important Alaska crop, [commercial peonies](https://uaf-snap.org/wp-content/uploads/2022/07/Peony-report.pdf)
+
+##### Source data
+Access detailed [metadata and data downloads](https://catalog.snap.uaf.edu/geonetwork/srv/eng/catalog.search#/metadata/7825535c-edff-4a82-89f3-9183e6cb2b42) for source data used in this tool.
+
                 """,
                 className="content is-size-6",
             )
