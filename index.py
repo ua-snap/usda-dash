@@ -17,7 +17,7 @@ app.index_string = f"""
 <html>
     <head>
         <script async defer
-          src="http://umami.snap.uaf.edu/umami.js"
+          src="https://umami.snap.uaf.edu/umami.js"
           data-website-id="f942d158-bdc3-4022-9f8e-eeee900b6dad"
           data-domains="snap.uaf.edu"
           data-do-not-track="true"
