@@ -85,7 +85,7 @@ Created by the Scenarios Network for Alaska and Arctic Planning, a climate chang
 Developed in collaboration with the USDA Northwest Climate Hub with funding provided by the Alaska Climate Adaptation Science Center.
 
 If you have questions, please
-[Contact Us](https://www.snap.uaf.edu/content/contact)
+[Contact Us](https://www.snap.uaf.edu/content/contact).
                 """,
                 className="content is-size-6",
             ),
@@ -115,7 +115,9 @@ If you have questions, please
             ),
             dcc.Markdown(
                 """
-UA is an AA/EO employer and educational institution and prohibits illegal discrimination against any individual. [Statement of Nondiscrimination](https://www.alaska.edu/nondiscrimination/).  UA is committed to providing accessible websites. [Learn more about UA’s notice of web accessibility](https://www.alaska.edu/webaccessibility/).  If we can help you access this website’s content, [email us](mailto:uaf-snap-data-tools@alaska.edu)!
+UA is an affirmative action / equal opportunity employer, educational institution and provider, and prohibits illegal discrimination against any individual. [Statement of Nondiscrimination](https://www.alaska.edu/nondiscrimination/) and [Privacy Statement](https://www.alaska.edu/records/records/compliance/gdpr/ua-privacy-statement/)
+
+UA is committed to providing accessible websites. [Learn more about UA’s notice of web accessibility](https://www.alaska.edu/webaccessibility/). If we can help you access this website’s content, [email us](mailto:uaf-snap-data-tools@alaska.edu)!
                 """,
                 className="content is-size-6",
             ),
